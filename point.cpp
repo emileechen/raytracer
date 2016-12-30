@@ -36,3 +36,7 @@ Point Point::operator+(Point& b) {
 	Point p(this->x + b.x, this->y + b.y, this->z + b.z);
 	return p;
 }
+ostream& operator<<(ostream &os, const Point& p) { 
+    os << "Point(" << p.x << ", " << p.y << ", " << p.z << ")";
+    return os;
+}

@@ -17,8 +17,7 @@ public:
 	const double getY(void);
 	const double getZ(void);
 	Point operator+(Point&);
+	friend ostream& operator<<(ostream &os, const Point& p);
 };
-
-
 
 #endif

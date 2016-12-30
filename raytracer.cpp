@@ -23,8 +23,17 @@ int main() {
 	cout << "pt3.x = " << pt3->getX() << endl;
 	cout << pt3 << endl;
 
+	cout << "Testing + operator" << endl;
 	Point pt4 = pt2 + pt2;
 	cout << pt4 << endl;
+
+	cout << "Testing - operator" << endl;
+	cout << pt4 - pt2 << endl;
+
+	cout << "Testing * operator" << endl;
+	cout << pt2 * 3.0 << endl;
+	cout << 3.0 * pt2 << endl;
+	cout << 3 * pt2 << endl;
 
 
 	return 0;

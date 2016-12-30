@@ -36,6 +36,18 @@ Point Point::operator+(Point& b) {
 	Point p(this->x + b.x, this->y + b.y, this->z + b.z);
 	return p;
 }
+Point Point::operator-(Point& b) {
+	Point p(this->x - b.x, this->y - b.y, this->z - b.z);
+	return p;
+}
+Point Point::operator*(double c) {
+	Point p(this->x * c, this->y * c, this->z * c);
+	return p;
+}
+Point operator*(double c, Point pt) {
+	Point p(pt.getX() * c, pt.getY() * c, pt.getZ() * c);
+	return p;
+}
 ostream& operator<<(ostream &os, const Point& p) { 
     os << "Point(" << p.x << ", " << p.y << ", " << p.z << ")";
     return os;

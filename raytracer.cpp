@@ -1,6 +1,7 @@
 #include "point.h"
 #include "vector.h"
 #include "colour.h"
+#include "matrix.h"
 #include <iostream>
 
 using namespace std;
@@ -75,6 +76,21 @@ int main() {
 	cout << v4 << endl;
 	cout << v4.normalize() << endl;
 	cout << "Normalize (2.0, 1.0, 2.0) = (2/3, 1/3, 2/3)" << endl;
+
+	cout << endl;
+
+	// Matrix tests
+	Matrix m;
+	cout << m << endl;
+
+	cout << endl;
+	double arr[] = { 0,0,0,0,
+					 1,2,2,2,
+					 2,2,2,2,
+					 3,3,3,3};
+	Matrix m1(arr);
+	cout << m1 << endl;
+
 
 
 	return 0;

@@ -1,5 +1,6 @@
 #include "point.h"
 #include "vector.h"
+#include "colour.h"
 #include <iostream>
 
 using namespace std;
@@ -63,6 +64,17 @@ int main() {
 	cout << v2.dot(v3) << endl;
 	cout << "(1.2, 1.0, 2.0) . (2.0, 2.3, 0.5) = 2.4 + 2.3 + 1.0 = 5.7" << endl;
 
+	cout << endl;
+
+	cout << v2.magnitude() << endl;
+	cout << "Magnitude of (1.2, 1.0, 2.0) = sqrt(1.44 + 1 + 4) = 2.53..." << endl;
+
+	cout << endl;
+
+	Vector v4(2.0, 1.0, 2.0);
+	cout << v4 << endl;
+	cout << v4.normalize() << endl;
+	cout << "Normalize (2.0, 1.0, 2.0) = (2/3, 1/3, 2/3)" << endl;
 
 
 	return 0;

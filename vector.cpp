@@ -1,4 +1,5 @@
 #include "vector.h"
+#include <cmath>
 #include <iostream>
 #include <string>
 
@@ -15,6 +16,9 @@ Vector::Vector() {
 }
 Vector::Vector(double x, double y, double z) {
 	init(x, y, z);
+}
+Vector::Vector(const Vector& v) {
+	init(v.x, v.y, v.z);
 }
 Vector::~Vector() {
 }
@@ -35,8 +39,19 @@ Vector operator*(double c, Vector vec) {
 	Vector v(vec.x * c, vec.y * c, vec.z * c);
 	return v;
 }
+Vector Vector::operator/(double c) {
+	Vector v(this->x / c, this->y / c, this->z / c);
+	return v;
+}
 double Vector::dot(Vector a) {
-	return this->x * a.x + this->y * a.y + this->z * a.z;
+	return (this->x * a.x) + (this->y * a.y) + (this->z * a.z);
+}
+double Vector::magnitude() {
+	return sqrt(this->dot(*this));
+}
+Vector Vector::normalize() {
+	Vector v(*this);
+	return v / this->magnitude();
 }
 ostream& operator<<(ostream &os, const Vector& v) { 
     os << "Vector(" << v.x << ", " << v.y << ", " << v.z << ")";

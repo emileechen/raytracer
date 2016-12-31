@@ -36,10 +36,16 @@ Matrix Matrix::operator+(Matrix& m) {
 	}
 	return ma;
 }
+Matrix identity() {
+	double arr[4 * 4] = {0};
+	for (int x = 0; x < 4; x++)
+		arr[x*4 + x] = 1;
+	return Matrix(arr);
+}
 ostream& operator<<(ostream &os, const Matrix& m) { 
     os << "[ [ " << m.mat[0] << " " << m.mat[1] << " " << m.mat[2] << " " << m.mat[3] << " ]" << endl;
     os << "  [ " << m.mat[4] << " " << m.mat[5] << " " << m.mat[6] << " " << m.mat[7] << " ]" << endl;
     os << "  [ " << m.mat[8] << " " << m.mat[9] << " " << m.mat[10] << " " << m.mat[11] << " ]" << endl;
-    os << "  [ " << m.mat[12] << " " << m.mat[13] << " " << m.mat[14] << " " << m.mat[15] << " ] ]" << endl;
+    os << "  [ " << m.mat[12] << " " << m.mat[13] << " " << m.mat[14] << " " << m.mat[15] << " ] ]";
     return os;
 }

@@ -91,6 +91,19 @@ int main() {
 	Matrix m1(arr);
 	cout << m1 << endl;
 
+	cout << endl;
+
+	double arr1[] = { 1,1,2,3,
+					  1,0,2,2,
+					  1,2,1,2,
+					  1,3,3,1};
+	Matrix m2(arr1);
+	cout << m1 + m2 << endl;
+
+	cout << endl;
+
+	Matrix m3 = identity();
+	cout << m3 << endl;
 
 
 	return 0;

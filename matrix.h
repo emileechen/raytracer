@@ -16,4 +16,6 @@ public:
 	friend ostream& operator<<(ostream&, const Matrix&);
 };
 
+Matrix identity();		// IS THIS SUPPOSED TO BE HERE THO BC ITS GLOABL NOW AMIRITE
+
 #endif

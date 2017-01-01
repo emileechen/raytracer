@@ -105,6 +105,14 @@ int main() {
 	Matrix m3 = identity();
 	cout << m3 << endl;
 
+	cout << endl;
+
+	double arr2[] = { 1,2,1,1,
+					  1,1,-1,-2,
+					  1,-1,-1,2,
+					  1,-2,1,1};
+	Matrix m4(arr2);
+	cout << m4 << endl;
 
 	return 0;
 }

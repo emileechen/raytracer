@@ -177,6 +177,26 @@ Matrix Matrix::operator-(Matrix& m) {
 	}
 	return ma;
 }
+Matrix Matrix::operator*(double c) {
+	Matrix ma;
+	int x, y;
+	for (x=0; x < 4; x++) {
+		for (y=0; y < 4; y++) {
+			ma.mat[y*4 + x] = this->mat[y*4 + x] * c;
+		}
+	}
+	return ma;
+}
+Matrix operator*(double c, Matrix m) {
+	Matrix ma;
+	int x, y;
+	for (x=0; x < 4; x++) {
+		for (y=0; y < 4; y++) {
+			ma.mat[y*4 + x] = m.mat[y*4 + x] * c;
+		}
+	}
+	return ma;
+}
 Matrix identity() {
 	double arr[4 * 4] = {0};
 	for (int x = 0; x < 4; x++)

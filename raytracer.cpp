@@ -114,5 +114,10 @@ int main() {
 	Matrix m4(arr2);
 	cout << m4 << endl;
 
+	cout << endl;
+
+	Matrix m5 = m4 * 2;
+	cout << m5 << endl;
+
 	return 0;
 }

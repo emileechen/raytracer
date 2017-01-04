@@ -17,7 +17,8 @@ public:
 	Matrix operator+(Matrix&);
 	Matrix operator-(Matrix&);
 	Matrix operator*(double);
-	friend Matrix operator*(double, Matrix);
+	friend Matrix operator*(double, Matrix&);
+	Matrix dot(Matrix&);
 	friend ostream& operator<<(ostream&, const Matrix&);
 };
 

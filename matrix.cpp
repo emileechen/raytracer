@@ -194,8 +194,19 @@ Matrix Matrix::operator*(double c) {
 		}
 	return ma;
 }
-Matrix operator*(double c, Matrix m) {
+Matrix operator*(double c, Matrix& m) {
 	return m * c;
+}
+Matrix Matrix::dot(Matrix& m) {
+	double arr[4 * 4] = {0};
+	for (int x = 0; x < 4; x++) {
+		for (int y = 0; y < 4; y++) {
+			for (int a = 0; a < 4; a++) {
+				arr[y*4 + x] += this->mat[a*4 + x] * m.mat[y*4 + a];
+			}
+		}
+	}
+	return Matrix(arr);
 }
 Matrix identity() {
 	double arr[4 * 4] = {0};

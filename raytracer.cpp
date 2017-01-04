@@ -125,5 +125,10 @@ int main() {
 	cout << m4 * 2 << endl;
 	cout << 2 * m4 << endl;
 
+	cout << endl;
+
+	cout << "Matrix multiplication..." << endl;
+	cout << (m4 * 2).dot(m4) << endl;
+
 	return 0;
 }

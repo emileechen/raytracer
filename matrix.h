@@ -24,5 +24,8 @@ public:
 
 bool inverse(double*, double*);
 Matrix identity();		// IS THIS SUPPOSED TO BE HERE THO BC ITS GLOABL NOW AMIRITE
+Matrix translation(double, double, double);
+Matrix rotation(double, double, double);
+Matrix scaling(double, double, double);
 
 #endif

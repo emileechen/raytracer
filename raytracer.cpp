@@ -1,10 +1,18 @@
+#include "colour.h"
+#include "lodepng.h"
+#include "matrix.h"
 #include "point.h"
 #include "vector.h"
-#include "colour.h"
-#include "matrix.h"
 #include <iostream>
 
 using namespace std;
+
+// void encodeOneStep(const char* filename, std::vector<unsigned char>& image, unsigned width, unsigned height) {
+// 	// Encode the image
+// 	unsigned error = lodepng::encode(filename, image, width, height);
+// 	// If there's an error, display it
+// 	if (error) cout << "encoder error " << error << ": " << lodepng_error_text(error) << endl;
+// }
 
 
 int main() {
@@ -129,6 +137,26 @@ int main() {
 
 	cout << "Matrix multiplication..." << endl;
 	cout << (m4 * 2).dot(m4) << endl;
+
+	cout << endl;
+
+	cout << "Translation matrix..." << endl;
+	cout << translation(1.0, 2.0, 1.0) << endl;
+
+	cout << endl;
+
+	cout << "Rotation matrix..." << endl;
+	cout << rotation(1, 0, 0) << endl;
+	cout << "Should be: " << endl;
+	cout << "[[ 1.        ,  0.        ,  0.        ,  0.        ]," << endl;
+    cout << " [ 0.        ,  0.9998477 , -0.01745241,  0.        ]," << endl;
+    cout << " [ 0.        ,  0.01745241,  0.9998477 ,  0.        ]," << endl;
+    cout << " [ 0.        ,  0.        ,  0.        ,  1.        ]]";
+
+	cout << endl;
+
+	cout << "Scaling matrix..." << endl;
+	cout << scaling(1.0, 2.0, 3.0) << endl;
 
 	return 0;
 }

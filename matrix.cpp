@@ -1,7 +1,10 @@
 #include "matrix.h"
+#include "vector.h"
 #include <cmath>
 #include <iostream>
 #include <string>
+
+#define PI 3.14159265
 
 using namespace std;
 
@@ -209,10 +212,56 @@ Matrix Matrix::dot(Matrix& m) {
 	return Matrix(arr);
 }
 Matrix identity() {
+	// Returns a 4 by 4 identity matrix.
 	double arr[4 * 4] = {0};
 	for (int x = 0; x < 4; x++)
 		arr[x*4 + x] = 1;
 	return Matrix(arr);
+}
+Matrix translation(double x, double y, double z) {
+	// Returns a translation matrix with tx ty and tz.
+	Matrix m = identity();
+	m.mat[0*4 + 3] = x;
+	m.inv[0*4 + 3] = -1 * x;
+	m.mat[1*4 + 3] = y;
+	m.inv[1*4 + 3] = -1 * y;
+	m.mat[2*4 + 3] = z;
+	m.inv[2*4 + 3] = -1 * z;
+	return m;
+}
+Matrix rotation(double x, double y, double z) {
+	// Returns a rotation matrix with rx ry and rz.
+
+	// Exponential map vector to rotational matrix
+	// theta = rotation angle in degrees
+	Vector expmap = Vector(x, y, z);
+	double theta = expmap.magnitude()*PI/180;
+	Vector r = expmap.normalize();
+
+	// Antisymmetric matrix
+	double arr[4 * 4] = {	0, -1 * r.z, r.y, 0,
+							r.z, 0, -1 * r.x, 0,
+							-1 * r.y, r.x, 0, 0,
+							0, 0, 0, 0};
+	Matrix A = Matrix(arr);
+
+	// Rodriques Formula
+	Matrix M = identity();
+	M = (A * sin(theta)) + M;
+	M = (A.dot(A) * (1 - cos(theta))) + M;
+
+	return M;
+}
+Matrix scaling(double x, double y, double z) {
+	// Returns a scaling matrix with sx sy and sz.
+	Matrix m = identity();
+	m.mat[0*4 + 0] = x;
+	m.inv[0*4 + 0] = 1 / x;
+	m.mat[1*4 + 1] = y;
+	m.inv[1*4 + 1] = 1 / y;
+	m.mat[2*4 + 2] = z;
+	m.inv[2*4 + 2] = 1 / z;
+	return m;
 }
 ostream& operator<<(ostream &os, const Matrix& m) { 
 	os << "[ [ " << m.mat[0] << " " << m.mat[1] << " " << m.mat[2] << " " << m.mat[3] << " ]" << endl;

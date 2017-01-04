@@ -158,24 +158,24 @@ Matrix::~Matrix() {
 }
 
 Matrix Matrix::operator+(Matrix& m) {
-	Matrix ma;
+	double arr[4 * 4] = {0};
 	int x, y;
 	for (x=0; x < 4; x++) {
 		for (y=0; y < 4; y++) {
-			ma.mat[y*4 + x] = m.mat[y*4 + x] + this->mat[y*4 + x];
+			arr[y*4 + x] = m.mat[y*4 + x] + this->mat[y*4 + x];
 		}
 	}
-	return ma;
+	return Matrix(arr);
 }
 Matrix Matrix::operator-(Matrix& m) {
-	Matrix ma;
+	double arr[4 * 4] = {0};
 	int x, y;
 	for (x=0; x < 4; x++) {
 		for (y=0; y < 4; y++) {
-			ma.mat[y*4 + x] = m.mat[y*4 + x] - this->mat[y*4 + x];
+			arr[y*4 + x] = m.mat[y*4 + x] - this->mat[y*4 + x];
 		}
 	}
-	return ma;
+	return Matrix(arr);
 }
 Matrix Matrix::operator*(double c) {
 	Matrix ma;
@@ -185,17 +185,17 @@ Matrix Matrix::operator*(double c) {
 			ma.mat[y*4 + x] = this->mat[y*4 + x] * c;
 		}
 	}
+	if (this->hasInverse == true)
+		ma.hasInverse = true;
+		for (x=0; x < 4; x++) {
+			for (y=0; y < 4; y++) {
+				ma.inv[y*4 + x] = this->inv[y*4 + x] / c;
+			}
+		}
 	return ma;
 }
 Matrix operator*(double c, Matrix m) {
-	Matrix ma;
-	int x, y;
-	for (x=0; x < 4; x++) {
-		for (y=0; y < 4; y++) {
-			ma.mat[y*4 + x] = m.mat[y*4 + x] * c;
-		}
-	}
-	return ma;
+	return m * c;
 }
 Matrix identity() {
 	double arr[4 * 4] = {0};
@@ -210,12 +210,16 @@ ostream& operator<<(ostream &os, const Matrix& m) {
 	os << "  [ " << m.mat[12] << " " << m.mat[13] << " " << m.mat[14] << " " << m.mat[15] << " ] ]";
 
 	os << endl;
-	os << endl;
 
-	os << "[ [ " << m.inv[0] << " " << m.inv[1] << " " << m.inv[2] << " " << m.inv[3] << " ]" << endl;
-	os << "  [ " << m.inv[4] << " " << m.inv[5] << " " << m.inv[6] << " " << m.inv[7] << " ]" << endl;
-	os << "  [ " << m.inv[8] << " " << m.inv[9] << " " << m.inv[10] << " " << m.inv[11] << " ]" << endl;
-	os << "  [ " << m.inv[12] << " " << m.inv[13] << " " << m.inv[14] << " " << m.inv[15] << " ] ]";
+	if (m.hasInverse == true) {
+		os << "inverse: " << endl;
+		os << "[ [ " << m.inv[0] << " " << m.inv[1] << " " << m.inv[2] << " " << m.inv[3] << " ]" << endl;
+		os << "  [ " << m.inv[4] << " " << m.inv[5] << " " << m.inv[6] << " " << m.inv[7] << " ]" << endl;
+		os << "  [ " << m.inv[8] << " " << m.inv[9] << " " << m.inv[10] << " " << m.inv[11] << " ]" << endl;
+		os << "  [ " << m.inv[12] << " " << m.inv[13] << " " << m.inv[14] << " " << m.inv[15] << " ] ]";
+	} else {
+		os << "no inverse";
+	}
 
 	return os;
 }

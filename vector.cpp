@@ -36,8 +36,8 @@ Vector Vector::operator*(double c) {
 	return v;
 }
 Vector operator*(double c, Vector vec) {
-	Vector v(vec.x * c, vec.y * c, vec.z * c);
-	return v;
+	// Vector v(vec.x * c, vec.y * c, vec.z * c);
+	return vec * c;
 }
 Vector Vector::operator/(double c) {
 	Vector v(this->x / c, this->y / c, this->z / c);

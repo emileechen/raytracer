@@ -36,8 +36,8 @@ Colour Colour::operator*(double c) {
 	return col;
 }
 Colour operator*(double c, Colour a) {
-	Colour col(a.r * c, a.g * c, a.b * c);
-	return col;
+	// Colour col(a.r * c, a.g * c, a.b * c);
+	return a * c;
 }
 ostream& operator<<(ostream &os, const Colour& c) { 
     os << "RGB(" << c.r << ", " << c.g << ", " << c.b << ")";

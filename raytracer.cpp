@@ -80,10 +80,13 @@ int main() {
 	cout << endl;
 
 	// Matrix tests
+	cout << "Initialize a basic matrix..." << endl;
 	Matrix m;
 	cout << m << endl;
 
 	cout << endl;
+
+	cout << "Initialize a specified matrix..." << endl;
 	double arr[] = { 0,0,0,0,
 					 1,2,2,2,
 					 2,2,2,2,
@@ -93,17 +96,19 @@ int main() {
 
 	cout << endl;
 
+	cout << "Initialize a identity matrix..." << endl;
+	Matrix m3 = identity();
+	cout << m3 << endl;
+
+	cout << endl;
+
+	cout << "Matrix addition..." << endl;
 	double arr1[] = { 1,1,2,3,
 					  1,0,2,2,
 					  1,2,1,2,
 					  1,3,3,1};
 	Matrix m2(arr1);
 	cout << m1 + m2 << endl;
-
-	cout << endl;
-
-	Matrix m3 = identity();
-	cout << m3 << endl;
 
 	cout << endl;
 
@@ -116,8 +121,9 @@ int main() {
 
 	cout << endl;
 
-	Matrix m5 = m4 * 2;
-	cout << m5 << endl;
+	cout << "Matrix scalar multiplication..." << endl;
+	cout << m4 * 2 << endl;
+	cout << 2 * m4 << endl;
 
 	return 0;
 }

@@ -32,8 +32,8 @@ Point Point::operator*(double c) {
 	return p;
 }
 Point operator*(double c, Point pt) {
-	Point p(pt.x * c, pt.y * c, pt.z * c);
-	return p;
+	// Point p(pt.x * c, pt.y * c, pt.z * c);
+	return pt * c;
 }
 ostream& operator<<(ostream &os, const Point& p) { 
     os << "Point(" << p.x << ", " << p.y << ", " << p.z << ")";

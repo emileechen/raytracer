@@ -7,13 +7,14 @@
 
 using namespace std;
 
-// void encodeOneStep(const char* filename, std::vector<unsigned char>& image, unsigned width, unsigned height) {
-// 	// Encode the image
-// 	unsigned error = lodepng::encode(filename, image, width, height);
-// 	// If there's an error, display it
-// 	if (error) cout << "encoder error " << error << ": " << lodepng_error_text(error) << endl;
-// }
+void encodeOneStep(const char* filename, std::vector<unsigned char>& image, unsigned width, unsigned height) {
+	// Encode the image
+	unsigned error = lodepng::encode(filename, image, width, height);
+	cout << "Saved to: " << filename;
 
+	// If there's an error, display it
+	if (error) cout << "encoder error " << error << ": " << lodepng_error_text(error) << endl;
+}
 
 int main() {
 	cout << "Hello World!" << endl;
@@ -157,6 +158,30 @@ int main() {
 
 	cout << "Scaling matrix..." << endl;
 	cout << scaling(1.0, 2.0, 3.0) << endl;
+
+	cout << endl;
+
+	const char* filename = "test.png";
+
+	// From: https://raw.githubusercontent.com/lvandeve/lodepng/master/examples/example_encode.cpp
+	// Generate some image
+	const unsigned width = 512, height = 512;
+	vector<unsigned char> image;
+	image.resize(width * height * 4);
+	for (unsigned y = 0; y < height; y++)
+		for(unsigned x = 0; x < width; x++) {
+			image[4 * width * y + 4 * x + 0] = 255 * !(x & y);
+			image[4 * width * y + 4 * x + 1] = x ^ y;
+			image[4 * width * y + 4 * x + 2] = x | y;
+			image[4 * width * y + 4 * x + 3] = 255;
+		}
+
+	encodeOneStep(filename, image, width, height);
+
+	cout << endl;
+
+	const unsigned width = 512, height = 512;
+	Colour* image = (Colour*) malloc(width * height * sizeof(Colour));
 
 	return 0;
 }

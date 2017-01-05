@@ -6,10 +6,11 @@ using namespace std;
 
 
 class Colour {
-	void init(double, double, double);
+	void init(double, double, double, double);
 public:
-	double r, g, b;
+	double r, g, b, a;
 	Colour();									// default constructor
+	Colour(double, double, double, double);				// constructor
 	Colour(double, double, double);				// constructor
 	Colour(const Colour&);
 	~Colour();									// deconstructor

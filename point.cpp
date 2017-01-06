@@ -1,8 +1,4 @@
 #include "point.h"
-#include <iostream>
-#include <string>
-
-using namespace std;
 
 
 void Point::init(double p0, double p1, double p2) {
@@ -35,7 +31,7 @@ Point operator*(double c, Point pt) {
 	// Point p(pt.x * c, pt.y * c, pt.z * c);
 	return pt * c;
 }
-ostream& operator<<(ostream &os, const Point& p) { 
+std::ostream& operator<<(std::ostream &os, const Point& p) { 
     os << "Point(" << p.x << ", " << p.y << ", " << p.z << ")";
     return os;
 }

@@ -1,12 +1,8 @@
 #include "matrix.h"
 #include "vector.h"
 #include <cmath>
-#include <iostream>
-#include <string>
 
 #define PI 3.14159265
-
-using namespace std;
 
 
 bool inverse(double* m, double* invOut) {
@@ -263,19 +259,19 @@ Matrix scaling(double x, double y, double z) {
 	m.inv[2*4 + 2] = 1 / z;
 	return m;
 }
-ostream& operator<<(ostream &os, const Matrix& m) { 
-	os << "[ [ " << m.mat[0] << " " << m.mat[1] << " " << m.mat[2] << " " << m.mat[3] << " ]" << endl;
-	os << "  [ " << m.mat[4] << " " << m.mat[5] << " " << m.mat[6] << " " << m.mat[7] << " ]" << endl;
-	os << "  [ " << m.mat[8] << " " << m.mat[9] << " " << m.mat[10] << " " << m.mat[11] << " ]" << endl;
+std::ostream& operator<<(std::ostream &os, const Matrix& m) { 
+	os << "[ [ " << m.mat[0] << " " << m.mat[1] << " " << m.mat[2] << " " << m.mat[3] << " ]" << std::endl;
+	os << "  [ " << m.mat[4] << " " << m.mat[5] << " " << m.mat[6] << " " << m.mat[7] << " ]" << std::endl;
+	os << "  [ " << m.mat[8] << " " << m.mat[9] << " " << m.mat[10] << " " << m.mat[11] << " ]" << std::endl;
 	os << "  [ " << m.mat[12] << " " << m.mat[13] << " " << m.mat[14] << " " << m.mat[15] << " ] ]";
 
-	os << endl;
+	os << std::endl;
 
 	if (m.hasInverse == true) {
-		os << "inverse: " << endl;
-		os << "[ [ " << m.inv[0] << " " << m.inv[1] << " " << m.inv[2] << " " << m.inv[3] << " ]" << endl;
-		os << "  [ " << m.inv[4] << " " << m.inv[5] << " " << m.inv[6] << " " << m.inv[7] << " ]" << endl;
-		os << "  [ " << m.inv[8] << " " << m.inv[9] << " " << m.inv[10] << " " << m.inv[11] << " ]" << endl;
+		os << "inverse: " << std::endl;
+		os << "[ [ " << m.inv[0] << " " << m.inv[1] << " " << m.inv[2] << " " << m.inv[3] << " ]" << std::endl;
+		os << "  [ " << m.inv[4] << " " << m.inv[5] << " " << m.inv[6] << " " << m.inv[7] << " ]" << std::endl;
+		os << "  [ " << m.inv[8] << " " << m.inv[9] << " " << m.inv[10] << " " << m.inv[11] << " ]" << std::endl;
 		os << "  [ " << m.inv[12] << " " << m.inv[13] << " " << m.inv[14] << " " << m.inv[15] << " ] ]";
 	} else {
 		os << "no inverse";

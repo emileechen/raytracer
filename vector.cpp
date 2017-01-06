@@ -1,9 +1,5 @@
 #include "vector.h"
 #include <cmath>
-#include <iostream>
-#include <string>
-
-using namespace std;
 
 
 void Vector::init(double v0, double v1, double v2) {
@@ -53,7 +49,7 @@ Vector Vector::normalize() {
 	Vector v(*this);
 	return v / this->magnitude();
 }
-ostream& operator<<(ostream &os, const Vector& v) { 
+std::ostream& operator<<(std::ostream &os, const Vector& v) { 
     os << "Vector(" << v.x << ", " << v.y << ", " << v.z << ")";
     return os;
 }

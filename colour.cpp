@@ -1,9 +1,5 @@
 #include "colour.h"
 #include <cmath>
-#include <iostream>
-#include <string>
-
-using namespace std;
 
 
 void Colour::init(double c0, double c1, double c2, double c3) {
@@ -43,7 +39,7 @@ Colour operator*(double c, Colour a) {
 	// Colour col(a.r * c, a.g * c, a.b * c);
 	return a * c;
 }
-ostream& operator<<(ostream &os, const Colour& c) { 
+std::ostream& operator<<(std::ostream &os, const Colour& c) { 
     os << "RGBA(" << c.r << ", " << c.g << ", " << c.b << ", " << c.a << ")";
     return os;
 }

@@ -2,8 +2,6 @@
 #define POINT_H
 #include <iostream>
 
-using namespace std;
-
 
 class Point {
 	void init(double, double, double);
@@ -16,7 +14,7 @@ public:
 	Point operator-(Point&);
 	Point operator*(double);
 	friend Point operator*(double, Point);
-	friend ostream& operator<<(ostream&, const Point&);
+	friend std::ostream& operator<<(std::ostream&, const Point&);
 };
 
 

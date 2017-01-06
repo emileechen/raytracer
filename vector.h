@@ -2,8 +2,6 @@
 #define VECTOR_H
 #include <iostream>
 
-using namespace std;
-
 
 class Vector {
 	void init(double, double, double);
@@ -21,7 +19,7 @@ public:
 	double dot(Vector);
 	double magnitude();
 	Vector normalize();
-	friend ostream& operator<<(ostream&, const Vector&);
+	friend std::ostream& operator<<(std::ostream&, const Vector&);
 };
 
 

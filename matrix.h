@@ -2,8 +2,6 @@
 #define MATRIX_H
 #include <iostream>
 
-using namespace std;
-
 
 class Matrix {
 	void init(const double*);
@@ -19,7 +17,7 @@ public:
 	Matrix operator*(double);
 	friend Matrix operator*(double, Matrix&);
 	Matrix dot(Matrix&);
-	friend ostream& operator<<(ostream&, const Matrix&);
+	friend std::ostream& operator<<(std::ostream&, const Matrix&);
 };
 
 bool inverse(double*, double*);

@@ -183,7 +183,7 @@ int main() {
 
 	std::cout << std::endl;
 
-	const unsigned width = 512, height = 512;
+	const unsigned int width = 512, height = 512;
 
 
 	return 0;

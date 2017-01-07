@@ -1,4 +1,5 @@
 // #include "colour.h"
+#include "image.h"
 #include "lodepng.h"
 #include "matrix.h"
 #include "point.h"
@@ -185,6 +186,18 @@ int main() {
 
 	const unsigned int width = 512, height = 512;
 
+	Image i = Image(5, 5);
+	i.image[8] = 29;
+	i.image[0] = 2;
+	std::cerr << i << std::endl;
+
+	Image i2 = Image(i);
+	std::cerr << i2 << std::endl;
+
+	i2.image[2] = 4;
+	
+	std::cerr << i << std::endl;
+	std::cerr << i2 << std::endl;
 
 	return 0;
 }

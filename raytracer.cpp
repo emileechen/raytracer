@@ -6,13 +6,37 @@
 #include "vector.h"
 
 
-void encodeOneStep(const char* filename, std::vector<unsigned char>& image, unsigned width, unsigned height) {
+void encodeOneStep(const char* filename, Image im, unsigned width, unsigned height) {
+	// std::vector<unsigned char> &image;
+	// memcpy(&image, &im.image[0], std::min(im.image.size(), sizeof(double)));
+	// std::vector<unsigned char> i(im.image.begin(), im.image.end());
+	// std::cerr << i[0] << std::endl;
+
+
+	// for (int i = 0; i < im.width * im.height; i++) {
+	// 	std::cerr << "(" << im.image[i*4] << ", " << im.image[i*4 + 1] << ", " << im.image[i*4 + 2] << ", " << im.image[i*4 + 3] << ") ";
+	// 	if (i % im.width == im.width - 1)
+	// 		std::cerr << std::endl;
+	// }
+
+	// const unsigned char* arr = (unsigned char*) im.image.data();
+	// std::vector<unsigned char> image = std::vector<unsigned char>(arr, arr + (width * height * 4));
+
+	// unsigned error = lodepng::encode(filename, image, width, height);
+
+
+
+
+	// std::vector<unsigned char> image = (std::vector<unsigned char>) im.image;
+
+	// std::cerr << arr[1] << std::endl;
+
 	// Encode the image
-	unsigned error = lodepng::encode(filename, image, width, height);
+	unsigned error = lodepng::encode(filename, im.image, width, height);
 	std::cout << "Saved to: " << filename;
 
-	// If there's an error, display it
-	if (error) std::cout << "encoder error " << error << ": " << lodepng_error_text(error) << std::endl;
+	// // If there's an error, display it
+	// if (error) std::cout << "encoder error " << error << ": " << lodepng_error_text(error) << std::endl;
 }
 
 int main() {
@@ -177,27 +201,26 @@ int main() {
 
 	// encodeOneStep(filename, image, width, height);
 
-	// std::cout << std::endl;
-
-	// const unsigned width = 512, height = 512;
-	// Colour* image = (Colour*) malloc(width * height * sizeof(Colour));
-
 	std::cout << std::endl;
 
-	const unsigned int width = 512, height = 512;
+	const unsigned int width = 5, height = 5;
 
-	Image i = Image(5, 5);
-	i.image[8] = 29;
-	i.image[0] = 2;
+	Image i = Image(width, height);
 	std::cerr << i << std::endl;
 
 	Image i2 = Image(i);
 	std::cerr << i2 << std::endl;
 
-	i2.image[2] = 4;
-	
-	std::cerr << i << std::endl;
-	std::cerr << i2 << std::endl;
+	i.image[0] = 255;	// first pixel red
+	i.image[1] = 0;
+	i.image[2] = 0;
+
+	i.image[4] = 0;		// second pixel green
+	i.image[5] = 255;
+	i.image[6] = 0;
+
+	const char* filename = "test2.png";
+	encodeOneStep(filename, i, width, height);
 
 	return 0;
 }

@@ -6,9 +6,9 @@
 
 
 class Image {
-	void init(unsigned int, unsigned int, const double*);
+	void init(unsigned int, unsigned int, const unsigned char*);
 public:
-	std::vector<double> image;
+	std::vector<unsigned char> image;
 	unsigned int width, height;
 	Image();									// default constructor
 	Image(unsigned int, unsigned int);

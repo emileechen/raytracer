@@ -174,6 +174,12 @@ int main() {
 
 	std::cout << std::endl;
 
+	std::cout << "Matrix * Vector4..." << std::endl;
+	std::cout << m1 * vec2 << std::endl;
+	std::cout << "Should be Vector4(0, 10, 12, 18)." << std::endl;
+
+	std::cout << std::endl;
+
 	std::cout << "Translation matrix..." << std::endl;
 	std::cout << translation(1.0, 2.0, 1.0) << std::endl;
 
@@ -218,7 +224,7 @@ int main() {
 	Point p(0, 0, 0);
 	Sphere sph(p, 1);
 	std::cout << sph <<std::endl;
-	std::cout << sph.normal(Point(3, 0, 0)) <<std::endl;
+	std::cout << sph.normal(Point(2, 2, 0)) <<std::endl;
 
 	return 0;
 }

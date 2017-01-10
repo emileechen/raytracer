@@ -178,20 +178,23 @@ Matrix Matrix::operator-(Matrix& m) {
 }
 Matrix Matrix::operator*(double c) {
 	Matrix ma;
-	int x, y;
-	for (x=0; x < 4; x++) {
-		for (y=0; y < 4; y++) {
+	for (int x = 0; x < 4; x++) {
+		for (int y = 0; y < 4; y++) {
 			ma.mat[y*4 + x] = this->mat[y*4 + x] * c;
+			if (this->hasInverse == true)
+				ma.inv[y*4 + x] = this->inv[y*4 + x] / c;
 		}
 	}
 	if (this->hasInverse == true)
 		ma.hasInverse = true;
-		for (x=0; x < 4; x++) {
-			for (y=0; y < 4; y++) {
-				ma.inv[y*4 + x] = this->inv[y*4 + x] / c;
-			}
-		}
 	return ma;
+}
+Vector4 Matrix::operator*(Vector4 v) {
+	double x = v.x * this->mat[0] + v.y * this->mat[1] + v.z * this->mat[2] + v.w * this->mat[3];
+	double y = v.x * this->mat[4] + v.y * this->mat[5] + v.z * this->mat[6] + v.w * this->mat[7];
+	double z = v.x * this->mat[8] + v.y * this->mat[9] + v.z * this->mat[10] + v.w * this->mat[11];
+	double w = v.x * this->mat[12] + v.y * this->mat[13] + v.z * this->mat[14] + v.w * this->mat[15];
+	return Vector4(x, y, z, w);
 }
 Matrix operator*(double c, Matrix& m) {
 	return m * c;
@@ -206,6 +209,17 @@ Matrix Matrix::dot(Matrix& m) {
 		}
 	}
 	return Matrix(arr);
+}
+Matrix Matrix::getInverse() {
+	Matrix ma;
+	ma.hasInverse = true;
+	for (int x = 0; x < 4; x++) {
+		for (int y = 0; y < 4; y++) {
+			ma.mat[y*4 + x] = this->inv[y*4 + x];
+			ma.inv[y*4 + x] = this->mat[y*4 + x];
+		}
+	}
+	return ma;
 }
 Matrix identity() {
 	// Returns a 4 by 4 identity matrix.

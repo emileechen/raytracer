@@ -2,13 +2,15 @@
 #define VECTOR_H
 #include <iostream>
 
+class Vector4;
 
 class Vector {
 	void init(double, double, double);
 public:
 	double x, y, z;
 	Vector();									// default constructor
-	Vector(double, double, double);				// constructor
+	Vector(double, double, double);
+	Vector(Vector4);
 	Vector(const Vector&);
 	~Vector();									// deconstructor
 	Vector operator+(Vector&);

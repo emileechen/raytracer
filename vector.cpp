@@ -13,6 +13,9 @@ Vector::Vector() {
 Vector::Vector(double x, double y, double z) {
 	init(x, y, z);
 }
+Vector::Vector(Vector4 v) {
+	init(v.x, v.y, v.z);
+}
 Vector::Vector(const Vector& v) {
 	init(v.x, v.y, v.z);
 }

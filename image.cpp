@@ -38,5 +38,5 @@ std::ostream& operator<<(std::ostream &os, const Image& im) {
 		if (i % im.width == im.width - 1)
 			os << std::endl;
 	}
-    return os;
+	return os;
 }

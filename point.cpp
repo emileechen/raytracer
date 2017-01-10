@@ -36,6 +36,6 @@ Vector Point::vectorTo(Point p) {
 	return v;
 }
 std::ostream& operator<<(std::ostream &os, const Point& p) { 
-    os << "Point(" << p.x << ", " << p.y << ", " << p.z << ")";
-    return os;
+	os << "Point(" << p.x << ", " << p.y << ", " << p.z << ")";
+	return os;
 }

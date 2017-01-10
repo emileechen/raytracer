@@ -4,13 +4,14 @@
 #include "matrix.h"
 #include "point.h"
 #include "shading.h"
+#include "geom.h"
 #include "vector.h"
 
 
 void encodeOneStep(const char* filename, Image im, unsigned width, unsigned height) {
 	// Encode the image
 	unsigned error = lodepng::encode(filename, im.image, width, height);
-	std::cout << "Saved to: " << filename;
+	std::cout << "Saved to: " << filename << std::endl;
 
 	// If there's an error, display it
 	if (error) std::cout << "encoder error " << error << ": " << lodepng_error_text(error) << std::endl;
@@ -21,7 +22,7 @@ int main() {
 
 	std::cout << std::endl;
 
-	// Test default constructor
+	// Test Point default constructor
 	Point pt;
 	std::cout << pt << std::endl;
 	std::cout << "Should be Point(0.0, 0.0, 0.0)." << std::endl;
@@ -70,12 +71,14 @@ int main() {
 
 	std::cout << std::endl;
 
+	// Vector default constructor
 	Vector v;
 	std::cout << v << std::endl;
 	std::cout << "Should be Vector(0.0, 0.0, 0.0)." << std::endl;
 
 	std::cout << std::endl;
 
+	// Vector dot()
 	Vector v2(1.2, 1.0, 2.0);
 	Vector v3(2.0, 2.3, 0.5);
 	std::cout << v2 << std::endl;
@@ -85,11 +88,13 @@ int main() {
 
 	std::cout << std::endl;
 
+	// Vector magnitude()
 	std::cout << v2.magnitude() << std::endl;
 	std::cout << "Magnitude of (1.2, 1.0, 2.0) = sqrt(1.44 + 1 + 4) = 2.53..." << std::endl;
 
 	std::cout << std::endl;
 
+	// Vector normalize()
 	Vector v4(2.0, 1.0, 2.0);
 	std::cout << v4 << std::endl;
 	std::cout << v4.normalize() << std::endl;
@@ -97,6 +102,20 @@ int main() {
 
 	std::cout << std::endl;
 
+	// Vector4 constructors
+	Vector4 vec;
+	std::cout << vec << std::endl;
+	std::cout << "Should be Vector4(0.0, 0.0, 0.0, 1.0)." << std::endl;
+
+	std::cout << std::endl;
+
+	Vector4 vec2(v4, 1);
+	std::cout << vec2 << std::endl;
+	std::cout << "Should be Vector4(2.0, 1.0, 2.0, 1.0)." << std::endl;
+
+	std::cout << std::endl;
+
+	// Shading constructor
 	Shading s(0.1, 0, 0.2, 0.588, 0.392, 0.666, 0.8, 0.8, 0.8, 13.0);
 	std::cout << s << std::endl;
 
@@ -164,9 +183,9 @@ int main() {
 	std::cout << rotation(1, 0, 0) << std::endl;
 	std::cout << "Should be: " << std::endl;
 	std::cout << "[[ 1.        ,  0.        ,  0.        ,  0.        ]," << std::endl;
-    std::cout << " [ 0.        ,  0.9998477 , -0.01745241,  0.        ]," << std::endl;
-    std::cout << " [ 0.        ,  0.01745241,  0.9998477 ,  0.        ]," << std::endl;
-    std::cout << " [ 0.        ,  0.        ,  0.        ,  1.        ]]";
+	std::cout << " [ 0.        ,  0.9998477 , -0.01745241,  0.        ]," << std::endl;
+	std::cout << " [ 0.        ,  0.01745241,  0.9998477 ,  0.        ]," << std::endl;
+	std::cout << " [ 0.        ,  0.        ,  0.        ,  1.        ]]";
 
 	std::cout << std::endl;
 
@@ -193,6 +212,13 @@ int main() {
 
 	const char* filename = "test.png";
 	encodeOneStep(filename, i, width, height);
+
+	std::cout << std::endl;
+
+	Point p(0, 0, 0);
+	Sphere sph(p, 1);
+	std::cout << sph <<std::endl;
+	std::cout << sph.normal(Point(3, 0, 0)) <<std::endl;
 
 	return 0;
 }

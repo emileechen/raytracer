@@ -23,4 +23,16 @@ public:
 };
 
 
+class Vector4 {
+	void init(double, double, double, double);
+public:
+	double x, y, z, w;
+	Vector4();
+	Vector4(double, double, double, double);
+	Vector4(Vector, double);
+	Vector4(const Vector4&);
+	~Vector4();
+	friend std::ostream& operator<<(std::ostream&, const Vector4&);
+};
+
 #endif

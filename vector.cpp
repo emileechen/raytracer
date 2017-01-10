@@ -50,6 +50,33 @@ Vector Vector::normalize() {
 	return v / this->magnitude();
 }
 std::ostream& operator<<(std::ostream &os, const Vector& v) { 
-    os << "Vector(" << v.x << ", " << v.y << ", " << v.z << ")";
-    return os;
+	os << "Vector(" << v.x << ", " << v.y << ", " << v.z << ")";
+	return os;
+}
+
+
+void Vector4::init(double v0, double v1, double v2, double v3) {
+	x = v0;
+	y = v1;
+	z = v2;
+	w = v3;
+}
+Vector4::Vector4() {
+	init(0.0, 0.0, 0.0, 1.0);
+}
+Vector4::Vector4(double x, double y, double z, double w) {
+	init(x, y, z, w);
+}
+Vector4::Vector4(Vector v, double w) {
+	init(v.x, v.y, v.z, w);
+}
+Vector4::Vector4(const Vector4& v) {
+	init(v.x, v.y, v.z, v.w);
+}
+Vector4::~Vector4() {
+}
+
+std::ostream& operator<<(std::ostream &os, const Vector4& v) { 
+	os << "Vector4(" << v.x << ", " << v.y << ", " << v.z << ", " << v.w << ")";
+	return os;
 }

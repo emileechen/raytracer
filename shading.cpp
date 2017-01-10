@@ -23,8 +23,8 @@ Shading::Shading(double kar, double kag, double kab, double kdr, double kdg, dou
 Shading::~Shading() {
 }
 std::ostream& operator<<(std::ostream &os, const Shading& s) { 
-    os << "Ambient: (" << s.kar << ", " << s.kag << ", " << s.kab << ")" << std::endl;
-    os << "Diffuse: (" << s.kdr << ", " << s.kdg << ", " << s.kdb << ")" << std::endl;
-    os << "Specular: (" << s.ksr << ", " << s.ksg << ", " << s.ksb << ", " << s.ksp << ")";
-    return os;
+	os << "Ambient: (" << s.kar << ", " << s.kag << ", " << s.kab << ")" << std::endl;
+	os << "Diffuse: (" << s.kdr << ", " << s.kdg << ", " << s.kdb << ")" << std::endl;
+	os << "Specular: (" << s.ksr << ", " << s.ksg << ", " << s.ksb << ", " << s.ksp << ")";
+	return os;
 }

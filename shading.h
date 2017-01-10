@@ -4,7 +4,7 @@
 
 
 class Shading {
-	void init();
+	void init(double, double, double, double, double, double, double, double, double, double);
 public:
 	// Ambient RGB
 	double kar, kag, kab;
@@ -14,9 +14,9 @@ public:
 	double ksr, ksg, ksb, ksp;
 
 	Shading();									// default constructor
-	Shading(kar, kag, kab, kdr, kdg, kdb, ksr, ksg, ksb, ksp);
+	Shading(double, double, double, double, double, double, double, double, double, double);
 	~Shading();									// deconstructor
-	friend std::ostream& operator<<(std::ostream&, const Geom&);
+	friend std::ostream& operator<<(std::ostream&, const Shading&);
 };
 
 #endif

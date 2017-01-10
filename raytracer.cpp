@@ -3,6 +3,7 @@
 #include "lodepng.h"
 #include "matrix.h"
 #include "point.h"
+#include "shading.h"
 #include "vector.h"
 
 
@@ -93,6 +94,11 @@ int main() {
 	std::cout << v4 << std::endl;
 	std::cout << v4.normalize() << std::endl;
 	std::cout << "Normalize (2.0, 1.0, 2.0) = (2/3, 1/3, 2/3)" << std::endl;
+
+	std::cout << std::endl;
+
+	Shading s(0.1, 0, 0.2, 0.588, 0.392, 0.666, 0.8, 0.8, 0.8, 13.0);
+	std::cout << s << std::endl;
 
 	std::cout << std::endl;
 

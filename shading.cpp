@@ -11,6 +11,7 @@ void Shading::init(double ar, double ag, double ab, double dr, double dg, double
 	ksr = sr;
 	ksg = sg;
 	ksb = sb;
+	ksp = sp;
 }
 Shading::Shading() {
 	// Glossy metallic reflective blue
@@ -20,4 +21,10 @@ Shading::Shading(double kar, double kag, double kab, double kdr, double kdg, dou
 	init(kar, kag, kab, kdr, kdg, kdb, ksr, ksg, ksb, ksp);
 }
 Shading::~Shading() {
+}
+std::ostream& operator<<(std::ostream &os, const Shading& s) { 
+    os << "Ambient: (" << s.kar << ", " << s.kag << ", " << s.kab << ")" << std::endl;
+    os << "Diffuse: (" << s.kdr << ", " << s.kdg << ", " << s.kdb << ")" << std::endl;
+    os << "Specular: (" << s.ksr << ", " << s.ksg << ", " << s.ksb << ", " << s.ksp << ")";
+    return os;
 }

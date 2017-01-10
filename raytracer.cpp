@@ -6,7 +6,7 @@
 #include "vector.h"
 
 
-void encodeOneStep(const char* filename, Image im, unsigned width, unsigned height) {::endl;
+void encodeOneStep(const char* filename, Image im, unsigned width, unsigned height) {
 	// Encode the image
 	unsigned error = lodepng::encode(filename, im.image, width, height);
 	std::cout << "Saved to: " << filename;
@@ -57,6 +57,15 @@ int main() {
 	std::cout << 3.0 * pt2 << std::endl;
 	std::cout << 3 * pt2 << std::endl;
 	std::cout << "2 * (1.1, 2.3, 1.3) = (2.2, 4.6, 2.6)" << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << "Testing vectorTo()" << std::endl;
+
+	Point origin(0, 0, 0);
+	Vector v1 = origin.vectorTo(pt2);
+	std::cout << v1 << std::endl;
+	std::cout << "(0, 0, 0) - (1.1, 2.3, 1.3) = Vector(1.1, 2.3, 1.3)" << std::endl;
 
 	std::cout << std::endl;
 

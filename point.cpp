@@ -31,6 +31,10 @@ Point operator*(double c, Point pt) {
 	// Point p(pt.x * c, pt.y * c, pt.z * c);
 	return pt * c;
 }
+Vector Point::vectorTo(Point p) {
+	Vector v(p.x - this->x, p.y - this->y, p.z - this->z);
+	return v;
+}
 std::ostream& operator<<(std::ostream &os, const Point& p) { 
     os << "Point(" << p.x << ", " << p.y << ", " << p.z << ")";
     return os;

@@ -2,6 +2,9 @@
 #define RAY_H
 #include <iostream>
 
+#include "point.h"
+#include "vector.h"
+
 
 class Ray {
 	void init(Point, Vector);

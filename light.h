@@ -21,11 +21,24 @@ class PointLight : public Light {
 	void init(Point, Colour);
 public:
 	Point point;
+	PointLight();
 	PointLight(Point, Colour);
-	Vector vectorTo(Point);
-	Ray rayTo(Point);
+	Vector vectorFrom(Point);
+	Ray rayFrom(Point);
 	double distance(Point);
-	friend std::ostream& operator<<(std::ostream&, const Point&);
+	friend std::ostream& operator<<(std::ostream&, const PointLight&);
+};
+
+class DirectionalLight : public Light {
+	void init(Vector, Colour);
+public:
+	Vector direction;
+	DirectionalLight();
+	DirectionalLight(Vector, Colour);
+	Vector vectorFrom(Point);
+	Ray rayFrom(Point);
+	double distance(Point);
+	friend std::ostream& operator<<(std::ostream&, const DirectionalLight&);
 };
 
 #endif

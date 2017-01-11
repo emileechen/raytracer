@@ -229,6 +229,8 @@ int main() {
 	std::cout << std::endl;
 
 	std::cout << Light() << std::endl;
+	std::cout << PointLight() << std::endl;
+	std::cout << DirectionalLight() << std::endl;
 
 
 	return 0;

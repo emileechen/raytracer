@@ -1,10 +1,11 @@
-// #include "colour.h"
+#include "colour.h"
+#include "geom.h"
 #include "image.h"
+#include "light.h"
 #include "lodepng.h"
 #include "matrix.h"
 #include "point.h"
 #include "shading.h"
-#include "geom.h"
 #include "vector.h"
 
 
@@ -200,31 +201,35 @@ int main() {
 
 	std::cout << std::endl;
 
-	const unsigned int width = 5, height = 5;
+	// const unsigned int width = 5, height = 5;
 
-	Image i = Image(width, height);
-	std::cerr << i << std::endl;
+	// Image i = Image(width, height);
+	// std::cerr << i << std::endl;
+	// Image i2 = Image(i);
+	// std::cerr << i2 << std::endl;
 
-	Image i2 = Image(i);
-	std::cerr << i2 << std::endl;
+	// i.image[0] = 255;	// first pixel red
+	// i.image[1] = 0;
+	// i.image[2] = 0;
 
-	i.image[0] = 255;	// first pixel red
-	i.image[1] = 0;
-	i.image[2] = 0;
+	// i.image[4] = 0;		// second pixel green
+	// i.image[5] = 255;
+	// i.image[6] = 0;
 
-	i.image[4] = 0;		// second pixel green
-	i.image[5] = 255;
-	i.image[6] = 0;
+	// const char* filename = "test.png";
+	// encodeOneStep(filename, i, width, height);
 
-	const char* filename = "test.png";
-	encodeOneStep(filename, i, width, height);
-
-	std::cout << std::endl;
+	// std::cout << std::endl;
 
 	Point p(0, 0, 0);
 	Sphere sph(p, 1);
 	std::cout << sph <<std::endl;
 	std::cout << sph.normal(Point(2, 2, 0)) <<std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << Light() << std::endl;
+
 
 	return 0;
 }

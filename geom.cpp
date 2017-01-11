@@ -33,15 +33,10 @@ Vector Sphere::normal(Point intersection) {
 	Vector v = (this->centre.vectorTo(intersection)).normalize();
 	v = Vector(this->transformation.getInverse() * Vector4(v, 0));
 	return v;
-
-	// def normal(self, intersection):
-	// 	c = self.center
-	// 	v = c.vectorTo(intersection).normalize()
-	// 	if self.transformation is not None and len(self.transformation) > 0:
-	// 		v = vector_from_list(matrix_stripped_deify(matrix_multiply(self.inverse_transpose_stripped, matrix_ify(v.to_list()[0:3], 0))))
-	// 		v = v.normalize()
-	// 	return v
 }
+// Solve |S+tD-C|^2 = r^2 for t
+// hit(ray)
+// return hit coordinate
 std::ostream& operator<<(std::ostream &os, const Sphere& s) { 
 	os << "Centre: " << s.centre << std::endl;
 	os << "Radius: " << s.radius;

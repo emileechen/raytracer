@@ -1,3 +1,4 @@
+#include "camera.h"
 #include "colour.h"
 #include "geom.h"
 #include "image.h"
@@ -7,6 +8,7 @@
 #include "point.h"
 #include "shading.h"
 #include "vector.h"
+#include <vector>
 
 
 void encodeOneStep(const char* filename, Image im, unsigned width, unsigned height) {
@@ -224,13 +226,29 @@ int main() {
 	Point p(0, 0, 0);
 	Sphere sph(p, 1);
 	std::cout << sph <<std::endl;
-	std::cout << sph.normal(Point(2, 2, 0)) <<std::endl;
+	std::cout << sph.normal(Point(2, 2, 0)) << std::endl;
 
 	std::cout << std::endl;
 
+	// Lights
 	std::cout << Light() << std::endl;
 	std::cout << PointLight() << std::endl;
 	std::cout << DirectionalLight() << std::endl;
+
+	std::cout << std::endl;
+
+	// Camera
+	std::cout << Camera() << std::endl;
+
+	std::cout << std::endl;
+
+	// Camera.makeRays() test
+	std::vector<Ray> rays = Camera().makeRays(3, 3);
+	for(int i = 0; i < rays.size(); ++i)
+		std::cout << rays[i] << " " << std::endl;
+	std::cout << "Should be:	(-1, 1, 1)	(0, 1, 1)	(1, 1, 1)" << std::endl;
+	std::cout << "		(-1, 0, 1)	(0, 0, 1)	(1, 0, 1)" << std::endl;
+	std::cout << "		(-1, -1, 1)	(0, -1, 1)	(1, -1, 1)" << std::endl;
 
 
 	return 0;

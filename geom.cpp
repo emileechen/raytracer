@@ -11,10 +11,14 @@ void Geom::init(Shading shade, Matrix trans) {
 	transformation = trans;
 }
 Geom::Geom() {
-	Matrix i = identity();
-	init(Shading(), i);
+	init(Shading(), identity());
 }
 Geom::~Geom() {
+}
+
+std::ostream& operator<<(std::ostream &os, const Geom& g) { 
+	os << "This Geom has no type.";
+	return os;
 }
 
 
@@ -69,6 +73,7 @@ double Sphere::hit(Ray r) {
 }
 std::ostream& operator<<(std::ostream &os, const Sphere& s) { 
 	os << "Centre: " << s.centre << std::endl;
-	os << "Radius: " << s.radius;
+	os << "Radius: " << s.radius << std::endl;
+	os << "Shading: " << s.shading;
 	return os;
 }

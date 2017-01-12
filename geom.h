@@ -4,7 +4,9 @@
 
 #include "matrix.h"
 #include "point.h"
+#include "ray.h"
 #include "shading.h"
+#include "vector.h"
 
 
 class Geom {
@@ -25,6 +27,7 @@ public:
 	Sphere(Point, double);
 	Sphere(Shading, Matrix, Point, double);
 	Vector normal(Point);
+	double hit(Ray);
 	friend std::ostream& operator<<(std::ostream&, const Sphere&);
 };
 

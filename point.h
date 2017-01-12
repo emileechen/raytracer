@@ -11,6 +11,7 @@ public:
 	double x, y, z;
 	Point();										// default constructor
 	Point(double, double, double);					// constructor
+	Point(Vector4);
 	~Point();										// deconstructor
 	Point operator+(Point&);
 	Point operator-(Point&);

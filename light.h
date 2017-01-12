@@ -41,4 +41,8 @@ public:
 	friend std::ostream& operator<<(std::ostream&, const DirectionalLight&);
 };
 
+class AmbientLight : public Light {
+	void init(Colour);
+};
+
 #endif

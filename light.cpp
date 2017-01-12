@@ -71,3 +71,8 @@ std::ostream& operator<<(std::ostream &os, const DirectionalLight& l) {
 	os << "			" << l.colour;
 	return os;
 }
+
+
+void AmbientLight::init(Colour c) {
+	colour = c;
+}

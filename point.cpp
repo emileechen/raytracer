@@ -12,6 +12,9 @@ Point::Point() {
 Point::Point(double x, double y, double z) {
 	init(x, y, z);
 }
+Point::Point(Vector4 v) {
+	init(v.x, v.y, v.z);
+}
 Point::~Point() {
 }
 

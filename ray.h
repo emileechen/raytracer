@@ -2,6 +2,7 @@
 #define RAY_H
 #include <iostream>
 
+#include "matrix.h"
 #include "point.h"
 #include "vector.h"
 
@@ -14,6 +15,7 @@ public:
 	Ray();									// default constructor
 	Ray(Point, Vector);
 	~Ray();									// deconstructor
+	Point intersection(double, Matrix);
 	friend std::ostream& operator<<(std::ostream&, const Ray&);
 };
 

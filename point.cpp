@@ -1,4 +1,5 @@
 #include "point.h"
+#include "vector.h"
 
 
 void Point::init(double p0, double p1, double p2) {
@@ -12,6 +13,9 @@ Point::Point() {
 Point::Point(double x, double y, double z) {
 	init(x, y, z);
 }
+Point::Point(Vector v) {
+	init(v.x, v.y, v.z);
+}
 Point::Point(Vector4 v) {
 	init(v.x, v.y, v.z);
 }
@@ -19,6 +23,10 @@ Point::~Point() {
 }
 
 Point Point::operator+(Point& b) {
+	Point p(this->x + b.x, this->y + b.y, this->z + b.z);
+	return p;
+}
+Point Point::operator+(Vector& b) {
 	Point p(this->x + b.x, this->y + b.y, this->z + b.z);
 	return p;
 }

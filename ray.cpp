@@ -14,6 +14,11 @@ Ray::Ray(Point o, Vector d) {
 Ray::~Ray() {
 }
 
+Point Ray::intersection(double t, Matrix transformation) {
+	Vector d = t * Vector(transformation.getInverse() * Vector4(this->direction));
+	Point o = Point(transformation.getInverse() * Vector4(this->origin));
+	return o + d;
+}
 std::ostream& operator<<(std::ostream &os, const Ray& r) { 
 	os << "Origin: " << r.origin << std::endl;
 	os << "Direction: " << r.direction;

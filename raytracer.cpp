@@ -237,6 +237,17 @@ int main() {
 
 	std::cout << std::endl;
 
+	// Rays
+	std::cout << Ray() << std::endl;
+
+	std::cout << std::endl;
+
+	// Ray intersection
+	std::cout << Ray(Point(1,1,0), Vector(1,0,1)).intersection(5, identity()) << std::endl;
+	std::cout << "Should be: (1, 1, 0) + 5 * (1, 0, 1) = (6, 1, 5)" << std::endl;
+
+	std::cout << std::endl;
+
 	// Camera
 	std::cout << Camera() << std::endl;
 

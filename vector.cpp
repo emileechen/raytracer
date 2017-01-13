@@ -1,4 +1,6 @@
 #include "vector.h"
+#include "point.h"
+
 #include <cmath>
 
 
@@ -35,7 +37,6 @@ Vector Vector::operator*(double c) {
 	return v;
 }
 Vector operator*(double c, Vector vec) {
-	// Vector v(vec.x * c, vec.y * c, vec.z * c);
 	return vec * c;
 }
 Vector Vector::operator/(double c) {
@@ -69,6 +70,12 @@ Vector4::Vector4() {
 }
 Vector4::Vector4(double x, double y, double z, double w) {
 	init(x, y, z, w);
+}
+Vector4::Vector4(Point p) {
+	init(p.x, p.y, p.z, 1);
+}
+Vector4::Vector4(Vector v) {
+	init(v.x, v.y, v.z, 0);
 }
 Vector4::Vector4(Vector v, double w) {
 	init(v.x, v.y, v.z, w);

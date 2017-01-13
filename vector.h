@@ -2,7 +2,11 @@
 #define VECTOR_H
 #include <iostream>
 
+// #include "point.h"
+
+
 class Vector4;
+class Point;
 
 class Vector {
 	void init(double, double, double);
@@ -31,6 +35,8 @@ public:
 	double x, y, z, w;
 	Vector4();
 	Vector4(double, double, double, double);
+	Vector4(Point);
+	Vector4(Vector);
 	Vector4(Vector, double);
 	Vector4(const Vector4&);
 	~Vector4();

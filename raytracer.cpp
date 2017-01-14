@@ -3,22 +3,14 @@
 #include "geom.h"
 #include "image.h"
 #include "light.h"
-#include "lodepng.h"
 #include "matrix.h"
 #include "point.h"
 #include "shading.h"
 #include "vector.h"
+#include "world.h"
+
 #include <vector>
 
-
-void encodeOneStep(const char* filename, Image im, unsigned width, unsigned height) {
-	// Encode the image
-	unsigned error = lodepng::encode(filename, im.image, width, height);
-	std::cout << "Saved to: " << filename << std::endl;
-
-	// If there's an error, display it
-	if (error) std::cout << "encoder error " << error << ": " << lodepng_error_text(error) << std::endl;
-}
 
 int main() {
 	std::cout << "Hello World!" << std::endl;
@@ -203,25 +195,29 @@ int main() {
 
 	std::cout << std::endl;
 
-	// const unsigned int width = 5, height = 5;
+	const unsigned int width = 5, height = 5;
 
-	// Image i = Image(width, height);
-	// std::cerr << i << std::endl;
-	// Image i2 = Image(i);
-	// std::cerr << i2 << std::endl;
+	Image i = Image(width, height);
+	std::cerr << i << std::endl;
+	Image i2 = Image(i);
+	std::cerr << i2 << std::endl;
 
-	// i.image[0] = 255;	// first pixel red
-	// i.image[1] = 0;
-	// i.image[2] = 0;
+	i.image[0] = 255;	// first pixel red
+	i.image[1] = 0;
+	i.image[2] = 0;
 
-	// i.image[4] = 0;		// second pixel green
-	// i.image[5] = 255;
-	// i.image[6] = 0;
+	i.image[4] = 0;		// second pixel green
+	i.image[5] = 255;
+	i.image[6] = 0;
 
-	// const char* filename = "test.png";
-	// encodeOneStep(filename, i, width, height);
+	i.image[8] = 0;		// third pixel blue
+	i.image[9] = 0;
+	i.image[10] = 255;
 
-	// std::cout << std::endl;
+	const char* filename = "test.png";
+	i.save(filename);
+
+	std::cout << std::endl;
 
 	Point p(0, 0, 0);
 	Sphere sph(p, 1);
@@ -261,6 +257,11 @@ int main() {
 	std::cout << "		(-1, 0, 1)	(0, 0, 1)	(1, 0, 1)" << std::endl;
 	std::cout << "		(-1, -1, 1)	(0, -1, 1)	(1, -1, 1)" << std::endl;
 
+	std::cout << std::endl;
+
+	const char* inputfilename = "input00.txt";
+	World w = World();
+	w.parseFile(inputfilename);
 
 	return 0;
 }

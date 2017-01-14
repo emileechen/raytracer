@@ -1,4 +1,5 @@
 #include "image.h"
+#include "lodepng.h"
 
 
 void Image::init(unsigned int w, unsigned int h, const unsigned char* i) {
@@ -29,6 +30,14 @@ Image::Image(const Image& im) {
 Image::~Image() {
 }
 
+void Image::save(const char* filename) {
+	// Encode the image
+	unsigned error = lodepng::encode(filename, this->image, this->width, this->height);
+	std::cout << "Saved to: " << filename << std::endl;
+
+	// If there's an error, display it
+	if (error) std::cout << "encoder error " << error << ": " << lodepng_error_text(error) << std::endl;
+}
 std::ostream& operator<<(std::ostream &os, const Image& im) {
 	for (int i = 0; i < im.width * im.height; i++) {
 		os << "(";

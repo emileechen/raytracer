@@ -13,6 +13,7 @@ public:
 	Image(unsigned int, unsigned int);
 	Image(const Image&);
 	~Image();									// deconstructor
+	void save(const char*);
 	friend std::ostream& operator<<(std::ostream&, const Image&);
 };
 

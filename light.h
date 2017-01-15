@@ -14,6 +14,7 @@ public:
 	Colour colour;
 	Light();
 	~Light();
+	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const Light&);
 };
 
@@ -26,6 +27,7 @@ public:
 	Vector vectorFrom(Point);
 	Ray rayFrom(Point);
 	double distance(Point);
+	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const PointLight&);
 };
 
@@ -38,11 +40,15 @@ public:
 	Vector vectorFrom(Point);
 	Ray rayFrom(Point);
 	double distance(Point);
+	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const DirectionalLight&);
 };
 
 class AmbientLight : public Light {
 	void init(Colour);
+public:
+	virtual void print(std::ostream&) const;
+	friend std::ostream& operator<<(std::ostream&, const AmbientLight&);
 };
 
 #endif

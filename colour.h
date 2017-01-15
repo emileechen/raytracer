@@ -13,8 +13,10 @@ public:
 	Colour(const Colour&);
 	~Colour();									// deconstructor
 	Colour operator+(Colour&);
+	Colour operator+=(Colour&);
 	Colour operator-(Colour&);
 	Colour operator*(double);
+	Colour operator*(Colour&);
 	friend Colour operator*(double, Colour);
 	friend std::ostream& operator<<(std::ostream&, const Colour&);
 };

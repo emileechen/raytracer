@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+#include "colour.h"
 #include "geom.h"
 
 class Light;
@@ -10,12 +11,13 @@ class World;
 
 
 class World {
-	void init();
+	void init(Colour);
 public:
 	std::vector<std::shared_ptr<Geom> > objects;
-	// std::vector<Geom*> objects;
-	std::vector<Light> lights;
+	std::vector<std::shared_ptr<Light> > lights;
+	Colour background;
 	World();
+	World(Colour);
 	~World();
 	void addSphere(double, double, double, double);
 	void parseFile(const char*);

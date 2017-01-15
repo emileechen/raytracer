@@ -12,8 +12,11 @@ Light::Light() {
 Light::~Light() {
 }
 
-std::ostream& operator<<(std::ostream &os, const Light& l) { 
-	os << "Light:	" << l.colour;
+void Light::print(std::ostream& os) const {
+	os << "This Light has no type.";
+}
+std::ostream& operator<<(std::ostream& os, const Light& l) {
+	l.print(os);
 	return os;
 }
 
@@ -38,10 +41,12 @@ Ray PointLight::rayFrom(Point p) {
 double PointLight::distance(Point p) {
 	return this->vectorFrom(p).magnitude();
 }
-
-std::ostream& operator<<(std::ostream &os, const PointLight& l) { 
-	os << "PointLight:	" << l.point << std::endl;
-	os << "		" << l.colour;
+void PointLight::print(std::ostream& os) const {
+	os << "PointLight:	" << this->point << std::endl;
+	os << "		" << this->colour;
+}
+std::ostream& operator<<(std::ostream& os, const PointLight& l) {
+	l.print(os);
 	return os;
 }
 
@@ -66,13 +71,24 @@ Ray DirectionalLight::rayFrom(Point p) {
 double DirectionalLight::distance(Point p) {
 	return std::numeric_limits<float>::max();
 }
-std::ostream& operator<<(std::ostream &os, const DirectionalLight& l) { 
-	os << "DirectionalLight:	" << l.direction << std::endl;
-	os << "			" << l.colour;
+void DirectionalLight::print(std::ostream& os) const {
+	os << "DirectionalLight:	" << this->direction << std::endl;
+	os << "			" << this->colour;
+}
+std::ostream& operator<<(std::ostream& os, const DirectionalLight& l) {
+	l.print(os);
 	return os;
 }
 
 
 void AmbientLight::init(Colour c) {
 	colour = c;
+}
+
+void AmbientLight::print(std::ostream& os) const {
+	os << "AmbientLight:	" << this->colour;
+}
+std::ostream& operator<<(std::ostream& os, const AmbientLight& l) {
+	l.print(os);
+	return os;
 }

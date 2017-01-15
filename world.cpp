@@ -7,10 +7,16 @@
 #include <string>
 
 
-void World::init() {
+void World::init(Colour bg) {
+	background = bg;
 }
 World::World() {
-	init();
+	// Black
+	init(Colour());
+}
+World::World(Colour bg) {
+	// Black
+	init(bg);
 }
 World::~World() {
 }

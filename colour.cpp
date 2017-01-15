@@ -27,6 +27,9 @@ Colour Colour::operator+(Colour& a) {
 	Colour c(this->r + a.r, this->g + a.g, this->b + a.b, this->a + a.a);
 	return c;
 }
+Colour Colour::operator+=(Colour& a) {
+	return *this + a;
+}
 Colour Colour::operator-(Colour& a) {
 	Colour c(this->r - a.r, this->g - a.g, this->b - a.b, this->a - a.a);
 	return c;
@@ -38,6 +41,10 @@ Colour Colour::operator*(double c) {
 Colour operator*(double c, Colour a) {
 	// Colour col(a.r * c, a.g * c, a.b * c);
 	return a * c;
+}
+Colour Colour::operator*(Colour& c) {
+	Colour col(this->r * c.r, this->g * c.g, this->b * c.b, this->a * c.a);
+	return col;
 }
 std::ostream& operator<<(std::ostream &os, const Colour& c) { 
     os << "RGBA(" << c.r << ", " << c.g << ", " << c.b << ", " << c.a << ")";

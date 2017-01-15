@@ -260,49 +260,24 @@ int main() {
 
 	std::cout << std::endl;
 
-	const char* inputfilename = "input00.txt";
+	std::vector<std::shared_ptr<Geom> > shapes;
+	Sphere sph1 = Sphere(Point(2,2,2),1);
+	shapes.push_back(std::make_shared<Sphere>(sph1));
+	std::cout << *shapes[0] << std::endl;
+	std::cout << shapes[0]->hit(Ray(Point(0, 0, 0), Vector(1, 1, 1))) << std::endl;
+
+	std::cout << std::endl;
+
 	World w = World();
+	const char* inputfilename = "input00.txt";
 	w.parseFile(inputfilename);
 
 	std::cout << std::endl;
 
-	w.addSphere(2,2,2,1);
+	w.addSphere(4,4,4,1);
 	std::cout << w << std::endl;
-	Ray r;
+	Ray r(Point(0, 0, 0), Vector(1, 1, 1));
 	r.trace(w);
-
-	std::cout << std::endl;
-
-	std::vector<Geom*> test1;
-	Sphere test2(Point(2,2,2),1);
-	test1.push_back(&test2);
-	std::cout << test2 << std::endl;
-	std::cout << *test1[0] << std::endl;
-
-	std::cout << std::endl;
-
-	// std::vector<std::unique_ptr<Geom> > base;
-	// base.push_back(std::unique_ptr<Geom>(new Sphere(Point(2,2,2),1)) );
-	// base.push_back(std::unique_ptr<Geom>(new Sphere(Point(3,3,3),1)) );
-	// std::cout << base[0] << std::endl;
-
-	std::vector<Geom*> base;
-	base.push_back(new Sphere(Point(2,2,2),1));
-	base.push_back(new Sphere(Point(3,3,3),1));
-
-	Geom** base1 = new Geom*[2];
-	base1[0] = new Sphere(Point(2,2,2),1);
-	base1[1] = new Sphere(Point(2,2,2),1);
-
-	std::vector<std::shared_ptr<Geom> > shapes(2);
-	Sphere uh = Sphere(Point(2,2,2),1);
-	shapes[0] = std::make_shared<Sphere>(uh);
-	std::cout << *shapes[0] << std::endl;
-
-	std::cout << std::endl;
-	
-	std::cout << shapes[0]->hit(Ray(Point(0, 0, 0), Vector(1, 1, 1))) << std::endl;
-
 
 	return 0;
 }

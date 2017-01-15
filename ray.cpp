@@ -1,4 +1,5 @@
 #include "ray.h"
+#include <vector>
 
 
 void Ray::init(Point o, Vector d) {
@@ -21,11 +22,24 @@ Point Ray::intersection(double t, Geom obj) {
 }
 void Ray::trace(World world) {
 	int objInd = -1;					// Index to objects vector<Geom> of closest Geom
-	int t = world.hit(*this, objInd);	// Ray t value for intersection point of ray and closest Geom
+	double t = world.hit(*this, objInd);	// Ray t value for intersection point of ray and closest Geom
 	// If the ray hits something...
+	std::cout << "objInd: " << objInd << std::endl;
+	std::cout << "t: " << t << std::endl;
 	if (objInd != -1) {
-		Geom* obj = world.objects[objInd];
+		std::shared_ptr<Geom> obj = world.objects[objInd];
 		Point intersection = this->intersection(t, *obj);
+
+		std::cout << intersection << std::endl;
+
+		intersection = Point(obj->transformation.getInverse() * Vector4(intersection));
+
+		std::cout << intersection << std::endl;
+
+		Vector normal = obj->normal(intersection);
+
+		std::cout << normal << std::endl;
+
 	}
 
 	// if closest_ref is not None:

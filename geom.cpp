@@ -17,6 +17,9 @@ Geom::Geom() {
 Geom::~Geom() {
 }
 
+Vector Geom::normal(Point p) {
+	return Vector();
+}
 double Geom::hit(Ray r) {
 	std::cout << "This Geom has no type." << std::endl;
 	return 0;
@@ -28,10 +31,6 @@ std::ostream& operator<<(std::ostream& os, const Geom& g) {
 	g.print(os);
 	return os;
 }
-// std::ostream& operator<<(std::ostream &os, const Geom& g) { 
-// 	os << "This Geom has no type.";
-// 	return os;
-// }
 
 
 void Sphere::init(Shading shade, Matrix trans, Point c, double r) {
@@ -72,9 +71,9 @@ double Sphere::hit(Ray r) {
 	Vector CtoS = this->centre.vectorTo(S);
 	double discriminant = pow(D.dot(CtoS), 2) - (D.dot(D) * (CtoS.dot(CtoS) - pow(this->radius, 2)));
 
-	std::cout << r << std::endl;
-	std::cout << *this << std::endl;
-	std::cout << discriminant << std::endl;
+	// std::cout << r << std::endl;
+	// std::cout << *this << std::endl;
+	// std::cout << discriminant << std::endl;
 
 	if (discriminant >= 0) {
 		// Solve the quadratic equation for t1 and t2.
@@ -101,9 +100,3 @@ std::ostream& operator<<(std::ostream& os, const Sphere& s) {
 	s.print(os);
 	return os;
 }
-// std::ostream& operator<<(std::ostream &os, const Sphere& s) { 
-// 	os << "Centre: " << s.centre << std::endl;
-// 	os << "Radius: " << s.radius << std::endl;
-// 	os << "Shading: " << s.shading;
-// 	return os;
-// }

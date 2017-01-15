@@ -18,7 +18,8 @@ World::~World() {
 void World::addSphere(double cx, double cy, double cz, double r) {
 	// Sphere: sph cx cy cz r
 	// Sphere s(Point(cx, cy, cz), r);
-	objects.push_back(new Sphere(Point(cx, cy, cz), r));
+	Sphere s = Sphere(Point(cx, cy, cz), r);
+	objects.push_back(std::make_shared<Sphere>(s));
 }
 void World::parseFile(const char* filename) {
 	std::ifstream input(filename);
@@ -36,8 +37,9 @@ void World::parseFile(const char* filename) {
 double World::hit(Ray r, int& closest_obj, double t_min, double t_max) {
 	double avoid_ref = std::numeric_limits<double>::max();
 	double closest_t = t_max;
+	std::cout << objects.size() << std::endl;
 	// Iterate through every Geom in objects...
-	for (std::vector<Geom>::size_type i = 0; i != objects.size(); i++) {
+	for (std::vector<std::shared_ptr<Geom> >::size_type i = 0; i < objects.size(); i++) {
 		double t = objects[i]->hit(r);
 		// If some geom is the closest, in front of camera, and hit...
 		if (t < closest_t and t >= t_min and t <= t_max) {

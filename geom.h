@@ -17,6 +17,7 @@ public:
 	Matrix transformation;
 	Geom();										// default constructor
 	~Geom();									// deconstructor
+	virtual Vector normal(Point);
 	virtual double hit(Ray);
 	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const Geom&);
@@ -30,7 +31,7 @@ public:
 	Sphere();
 	Sphere(Point, double);
 	Sphere(Shading, Matrix, Point, double);
-	Vector normal(Point);
+	virtual Vector normal(Point);
 	virtual double hit(Ray);
 	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const Sphere&);

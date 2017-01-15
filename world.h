@@ -12,7 +12,8 @@ class World;
 class World {
 	void init();
 public:
-	std::vector<Geom*> objects;
+	std::vector<std::shared_ptr<Geom> > objects;
+	// std::vector<Geom*> objects;
 	std::vector<Light> lights;
 	World();
 	~World();

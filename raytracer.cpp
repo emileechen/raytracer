@@ -5,6 +5,7 @@
 #include "light.h"
 #include "matrix.h"
 #include "point.h"
+#include "ray.h"
 #include "shading.h"
 #include "vector.h"
 #include "world.h"
@@ -239,7 +240,7 @@ int main() {
 	std::cout << std::endl;
 
 	// Ray intersection
-	std::cout << Ray(Point(1,1,0), Vector(1,0,1)).intersection(5, identity()) << std::endl;
+	std::cout << Ray(Point(1,1,0), Vector(1,0,1)).intersection(5, Sphere()) << std::endl;
 	std::cout << "Should be: (1, 1, 0) + 5 * (1, 0, 1) = (6, 1, 5)" << std::endl;
 
 	std::cout << std::endl;
@@ -262,6 +263,46 @@ int main() {
 	const char* inputfilename = "input00.txt";
 	World w = World();
 	w.parseFile(inputfilename);
+
+	std::cout << std::endl;
+
+	w.addSphere(2,2,2,1);
+	std::cout << w << std::endl;
+	Ray r;
+	r.trace(w);
+
+	std::cout << std::endl;
+
+	std::vector<Geom*> test1;
+	Sphere test2(Point(2,2,2),1);
+	test1.push_back(&test2);
+	std::cout << test2 << std::endl;
+	std::cout << *test1[0] << std::endl;
+
+	std::cout << std::endl;
+
+	// std::vector<std::unique_ptr<Geom> > base;
+	// base.push_back(std::unique_ptr<Geom>(new Sphere(Point(2,2,2),1)) );
+	// base.push_back(std::unique_ptr<Geom>(new Sphere(Point(3,3,3),1)) );
+	// std::cout << base[0] << std::endl;
+
+	std::vector<Geom*> base;
+	base.push_back(new Sphere(Point(2,2,2),1));
+	base.push_back(new Sphere(Point(3,3,3),1));
+
+	Geom** base1 = new Geom*[2];
+	base1[0] = new Sphere(Point(2,2,2),1);
+	base1[1] = new Sphere(Point(2,2,2),1);
+
+	std::vector<std::shared_ptr<Geom> > shapes(2);
+	Sphere uh = Sphere(Point(2,2,2),1);
+	shapes[0] = std::make_shared<Sphere>(uh);
+	std::cout << *shapes[0] << std::endl;
+
+	std::cout << std::endl;
+	
+	std::cout << shapes[0]->hit(Ray(Point(0, 0, 0), Vector(1, 1, 1))) << std::endl;
+
 
 	return 0;
 }

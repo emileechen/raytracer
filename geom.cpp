@@ -1,4 +1,5 @@
 #include "geom.h"
+#include "ray.h"
 #include <algorithm>
 #include <cmath>
 #include <limits>
@@ -16,10 +17,21 @@ Geom::Geom() {
 Geom::~Geom() {
 }
 
-std::ostream& operator<<(std::ostream &os, const Geom& g) { 
+double Geom::hit(Ray r) {
+	std::cout << "This Geom has no type." << std::endl;
+	return 0;
+}
+void Geom::print(std::ostream& os) const {
 	os << "This Geom has no type.";
+}
+std::ostream& operator<<(std::ostream& os, const Geom& g) {
+	g.print(os);
 	return os;
 }
+// std::ostream& operator<<(std::ostream &os, const Geom& g) { 
+// 	os << "This Geom has no type.";
+// 	return os;
+// }
 
 
 void Sphere::init(Shading shade, Matrix trans, Point c, double r) {
@@ -27,6 +39,10 @@ void Sphere::init(Shading shade, Matrix trans, Point c, double r) {
 	transformation = trans;
 	centre = c;
 	radius = r;
+}
+Sphere::Sphere() {
+	Matrix i = identity();
+	init(Shading(), i, Point(0, 5, 0), 1);
 }
 Sphere::Sphere(Point c, double r) {
 	Matrix i = identity();
@@ -55,6 +71,11 @@ double Sphere::hit(Ray r) {
 	// CtoS = S - C
 	Vector CtoS = this->centre.vectorTo(S);
 	double discriminant = pow(D.dot(CtoS), 2) - (D.dot(D) * (CtoS.dot(CtoS) - pow(this->radius, 2)));
+
+	std::cout << r << std::endl;
+	std::cout << *this << std::endl;
+	std::cout << discriminant << std::endl;
+
 	if (discriminant >= 0) {
 		// Solve the quadratic equation for t1 and t2.
 		double t1 = (-1 * D.dot(CtoS) + sqrt(discriminant)) / (2 * D.dot(D));
@@ -69,11 +90,20 @@ double Sphere::hit(Ray r) {
 		}
 	}
 	// discriminant < 0, no solution, does not intersect
-	return std::numeric_limits<float>::max();
+	return std::numeric_limits<double>::max();
 }
-std::ostream& operator<<(std::ostream &os, const Sphere& s) { 
-	os << "Centre: " << s.centre << std::endl;
-	os << "Radius: " << s.radius << std::endl;
-	os << "Shading: " << s.shading;
+void Sphere::print(std::ostream& os) const {
+	os << "Centre: " << this->centre << std::endl;
+	os << "Radius: " << this->radius << std::endl;
+	os << "Shading: " << this->shading;
+}
+std::ostream& operator<<(std::ostream& os, const Sphere& s) {
+	s.print(os);
 	return os;
 }
+// std::ostream& operator<<(std::ostream &os, const Sphere& s) { 
+// 	os << "Centre: " << s.centre << std::endl;
+// 	os << "Radius: " << s.radius << std::endl;
+// 	os << "Shading: " << s.shading;
+// 	return os;
+// }

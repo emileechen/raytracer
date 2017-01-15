@@ -4,9 +4,10 @@
 
 #include "matrix.h"
 #include "point.h"
-#include "ray.h"
 #include "shading.h"
 #include "vector.h"
+
+class Ray;
 
 
 class Geom {
@@ -16,6 +17,8 @@ public:
 	Matrix transformation;
 	Geom();										// default constructor
 	~Geom();									// deconstructor
+	virtual double hit(Ray);
+	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const Geom&);
 };
 
@@ -24,10 +27,12 @@ class Sphere : public Geom {
 public:
 	Point centre;
 	double radius;
+	Sphere();
 	Sphere(Point, double);
 	Sphere(Shading, Matrix, Point, double);
 	Vector normal(Point);
-	double hit(Ray);
+	virtual double hit(Ray);
+	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const Sphere&);
 };
 

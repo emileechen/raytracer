@@ -1,5 +1,7 @@
 #include "light.h"
+#include <algorithm>
 #include <limits>
+#include <math.h>
 
 
 void Light::init(Colour c) {
@@ -12,6 +14,9 @@ Light::Light() {
 Light::~Light() {
 }
 
+Colour Light::resultingColour(World world, std::shared_ptr<Geom> obj, Point intersection, Ray r) {
+	return Colour();
+}
 void Light::print(std::ostream& os) const {
 	os << "This Light has no type.";
 }
@@ -40,6 +45,27 @@ Ray PointLight::rayFrom(Point p) {
 }
 double PointLight::distance(Point p) {
 	return this->vectorFrom(p).magnitude();
+}
+Colour PointLight::resultingColour(World world, std::shared_ptr<Geom> obj, Point intersection, Ray r) {
+	Vector objNormal = obj->normal(intersection);
+	Vector viewNormal = r.direction * -1;
+	Ray shadowRay = this->rayFrom(intersection);
+	double lightDistance = this->distance(intersection);
+	int closestObj = -1;
+	double shadowRayT = world.hit(shadowRay, closestObj, 0.1 /* SHADOW_THRESHOLD*/);
+	// If the ray does not hit anything before the light source...
+	// if (shadowRayT >= std::numeric_limits<float>::max()) {
+		Vector lightNormal = shadowRay.direction.normalize();
+		Vector reflectedNormal = 2 * objNormal * lightNormal.dot(objNormal);
+		reflectedNormal = (lightNormal * -1) +reflectedNormal;
+	// }
+	// ambient = ka * I
+	Colour ambient = obj->shading.ambient * this->colour;
+	// diffuse = kd * I * max((l . n), 0)
+	Colour diffuse = obj->shading.diffuse * this->colour * std::max(lightNormal.dot(objNormal), 0.0);
+	// specular = ks * I * max((r . v), 0) ^ p
+	Colour specular = obj->shading.specular * this->colour * pow(std::max(reflectedNormal.dot(viewNormal), 0.0), obj->shading.intensity);
+	return ambient + diffuse + specular;
 }
 void PointLight::print(std::ostream& os) const {
 	os << "PointLight:	" << this->point << std::endl;
@@ -71,6 +97,27 @@ Ray DirectionalLight::rayFrom(Point p) {
 double DirectionalLight::distance(Point p) {
 	return std::numeric_limits<float>::max();
 }
+Colour DirectionalLight::resultingColour(World world, std::shared_ptr<Geom> obj, Point intersection, Ray r) {
+	Vector objNormal = obj->normal(intersection);
+	Vector viewNormal = r.direction * -1;
+	Ray shadowRay = this->rayFrom(intersection);
+	double lightDistance = this->distance(intersection);
+	int closestObj = -1;
+	double shadowRayT = world.hit(shadowRay, closestObj, 0.1 /* SHADOW_THRESHOLD*/);
+	// If the ray does not hit anything before the light source...
+	// if (shadowRayT >= std::numeric_limits<float>::max()) {
+		Vector lightNormal = shadowRay.direction.normalize();
+		Vector reflectedNormal = 2 * objNormal * lightNormal.dot(objNormal);
+		reflectedNormal = (lightNormal * -1) +reflectedNormal;
+	// }
+	// ambient = ka * I
+	Colour ambient = obj->shading.ambient * this->colour;
+	// diffuse = kd * I * max((l . n), 0)
+	Colour diffuse = obj->shading.diffuse * this->colour * std::max(lightNormal.dot(objNormal), 0.0);
+	// specular = ks * I * max((r . v), 0) ^ p
+	Colour specular = obj->shading.specular * this->colour * pow(std::max(reflectedNormal.dot(viewNormal), 0.0), obj->shading.intensity);
+	return ambient + diffuse + specular;
+}
 void DirectionalLight::print(std::ostream& os) const {
 	os << "DirectionalLight:	" << this->direction << std::endl;
 	os << "			" << this->colour;
@@ -85,6 +132,9 @@ void AmbientLight::init(Colour c) {
 	colour = c;
 }
 
+Colour AmbientLight::resultingColour(World world, std::shared_ptr<Geom> obj, Point intersection, Ray r) {
+	return obj->shading.ambient * this->colour;
+}
 void AmbientLight::print(std::ostream& os) const {
 	os << "AmbientLight:	" << this->colour;
 }

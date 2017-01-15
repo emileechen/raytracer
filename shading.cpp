@@ -13,27 +13,27 @@
 // 	ksb = sb;
 // 	ksp = sp;
 // }
-void Shading::init(Colour a, Colour d, Colour s, double sp) {
+void Shading::init(Colour a, Colour d, Colour s, double i) {
 	ambient = a;
 	diffuse = d;
 	specular = s;
-	specP = sp;
+	intensity = i;
 }
 Shading::Shading() {
 	// Glossy metallic reflective blue
 	init(Colour(0.1, 0, 0.2), Colour(0.588, 0.392, 0.666), Colour(0.8, 0.8, 0.8), 13.0);
 }
-Shading::Shading(double kar, double kag, double kab, double kdr, double kdg, double kdb, double ksr, double ksg, double ksb, double ksp) {
-	init(Colour(kar, kag, kab), Colour(kdr, kdg, kdb), Colour(ksr, ksg, ksb), ksp);
+Shading::Shading(double kar, double kag, double kab, double kdr, double kdg, double kdb, double ksr, double ksg, double ksb, double intensity) {
+	init(Colour(kar, kag, kab), Colour(kdr, kdg, kdb), Colour(ksr, ksg, ksb), intensity);
 }
-Shading::Shading(Colour ambient, Colour diffuse, Colour specular, double specP) {
-	init(ambient, diffuse, specular, specP);
+Shading::Shading(Colour ambient, Colour diffuse, Colour specular, double intensity) {
+	init(ambient, diffuse, specular, intensity);
 }
 Shading::~Shading() {
 }
 std::ostream& operator<<(std::ostream &os, const Shading& s) { 
 	os << "Ambient: " << s.ambient << std::endl;
 	os << "Diffuse: " << s.diffuse << std::endl;
-	os << "Specular: " << s.specular << ", " << s.specP << "";
+	os << "Specular: " << s.specular << ", " << s.intensity << "";
 	return os;
 }

@@ -3,9 +3,11 @@
 #include <iostream>
 
 #include "colour.h"
+#include "geom.h"
 #include "point.h"
 #include "ray.h"
 #include "vector.h"
+#include "world.h"
 
 
 class Light {
@@ -14,6 +16,7 @@ public:
 	Colour colour;
 	Light();
 	~Light();
+	virtual Colour resultingColour(World, std::shared_ptr<Geom>, Point, Ray);
 	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const Light&);
 };
@@ -27,6 +30,7 @@ public:
 	Vector vectorFrom(Point);
 	Ray rayFrom(Point);
 	double distance(Point);
+	virtual Colour resultingColour(World, std::shared_ptr<Geom>, Point, Ray);
 	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const PointLight&);
 };
@@ -40,6 +44,7 @@ public:
 	Vector vectorFrom(Point);
 	Ray rayFrom(Point);
 	double distance(Point);
+	virtual Colour resultingColour(World, std::shared_ptr<Geom>, Point, Ray);
 	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const DirectionalLight&);
 };
@@ -47,6 +52,7 @@ public:
 class AmbientLight : public Light {
 	void init(Colour);
 public:
+	virtual Colour resultingColour(World, std::shared_ptr<Geom>, Point, Ray);
 	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const AmbientLight&);
 };

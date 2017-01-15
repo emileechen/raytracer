@@ -40,15 +40,15 @@ void World::parseFile(const char* filename) {
 	// }
 }
 // Returns t intersection value for the first Geom in objects hit by given ray
-double World::hit(Ray r, int& closest_obj, double t_min, double t_max) {
+double World::hit(Ray r, int& closest_obj, double tMin, double tMax) {
 	double avoid_ref = std::numeric_limits<double>::max();
-	double closest_t = t_max;
+	double closest_t = tMax;
 	std::cout << objects.size() << std::endl;
 	// Iterate through every Geom in objects...
 	for (std::vector<std::shared_ptr<Geom> >::size_type i = 0; i < objects.size(); i++) {
 		double t = objects[i]->hit(r);
 		// If some geom is the closest, in front of camera, and hit...
-		if (t < closest_t and t >= t_min and t <= t_max) {
+		if (t < closest_t and t >= tMin and t <= tMax) {
 			closest_t = t;
 			closest_obj = i;
 		}

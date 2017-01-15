@@ -79,13 +79,13 @@ double Sphere::hit(Ray r) {
 		// Solve the quadratic equation for t1 and t2.
 		double t1 = (-1 * D.dot(CtoS) + sqrt(discriminant)) / (2 * D.dot(D));
 		double t2 = (-1 * D.dot(CtoS) - sqrt(discriminant)) / (2 * D.dot(D));
-		double t_max = fmax(t1, t2);
-		double t_min = fmin(t1, t2);
-		if (t_max >= 0.0) {
-			if (t_min <= 0.0) {
-				return t_max;
+		double tMax = fmax(t1, t2);
+		double tMin = fmin(t1, t2);
+		if (tMax >= 0.0) {
+			if (tMin <= 0.0) {
+				return tMax;
 			}
-			return t_min;
+			return tMin;
 		}
 	}
 	// discriminant < 0, no solution, does not intersect

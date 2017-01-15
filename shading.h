@@ -18,7 +18,7 @@ public:
 	Colour ambient;
 	Colour diffuse;
 	Colour specular;
-	double specP;
+	double intensity;
 
 	Shading();									// default constructor
 	Shading(double, double, double, double, double, double, double, double, double, double);

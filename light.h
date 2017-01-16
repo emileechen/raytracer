@@ -52,6 +52,8 @@ public:
 class AmbientLight : public Light {
 	void init(Colour);
 public:
+	AmbientLight();
+	AmbientLight(Colour);
 	virtual Colour resultingColour(World, std::shared_ptr<Geom>, Point, Ray);
 	virtual void print(std::ostream&) const;
 	friend std::ostream& operator<<(std::ostream&, const AmbientLight&);

@@ -131,6 +131,12 @@ std::ostream& operator<<(std::ostream& os, const DirectionalLight& l) {
 void AmbientLight::init(Colour c) {
 	colour = c;
 }
+AmbientLight::AmbientLight() {
+	init(Colour(0.1, 0.1, 0.1));
+}
+AmbientLight::AmbientLight(Colour c) {
+	init(c);
+}
 
 Colour AmbientLight::resultingColour(World world, std::shared_ptr<Geom> obj, Point intersection, Ray r) {
 	return obj->shading.ambient * this->colour;

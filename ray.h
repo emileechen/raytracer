@@ -18,7 +18,7 @@ public:
 	Ray(Point, Vector);
 	~Ray();									// deconstructor
 	Point intersection(double, Geom);
-	void trace(World);
+	Colour trace(World);
 	friend std::ostream& operator<<(std::ostream&, const Ray&);
 };
 

@@ -21,22 +21,22 @@ Point Ray::intersection(double t, Geom obj) {
 	Point o = Point(obj.transformation.getInverse() * Vector4(this->origin));
 	return o + d;
 }
-void Ray::trace(World world) {
+Colour Ray::trace(World world) {
 	int objInd = -1;					// Index to objects vector<Geom> of closest Geom
 	double t = world.hit(*this, objInd);	// Ray t value for intersection point of ray and closest Geom
 	// If the ray hits something...
-	std::cout << "objInd: " << objInd << std::endl;
-	std::cout << "t: " << t << std::endl;
+	Colour finalColour = Colour(world.background);
 	if (objInd != -1) {
+		std::cout << "hit" << std::endl;
 		std::shared_ptr<Geom> obj = world.objects[objInd];
 		Point intersection = this->intersection(t, *obj);
 		Point intersectionTrans = Point(obj->transformation.getInverse() * Vector4(intersection));
 		Vector normal = obj->normal(intersectionTrans);
-		Colour finalColour = Colour(world.background);
 		for (std::vector<std::shared_ptr<Light> >::size_type i = 0; i < world.lights.size(); i++) {
-			finalColour = world.lights[i]->resultingColour(world, obj, intersection, *this);
+			finalColour = world.lights[i]->resultingColour(world, obj, intersection, *this) + finalColour;
 		}
 	}
+	return finalColour;
 }
 std::ostream& operator<<(std::ostream &os, const Ray& r) { 
 	os << "Origin: " << r.origin << std::endl;

@@ -19,7 +19,14 @@ public:
 	World();
 	World(Colour);
 	~World();
+	void addCamera(	double, double, double,
+					double, double, double,
+					double, double, double,
+					double, double, double,
+					double, double, double	);
 	void addSphere(double, double, double, double);
+	void addPointLight(double, double, double, double, double, double);
+	void addAmbientLight(double, double, double);
 	void parseFile(const char*);
 	double hit(Ray, int&, double t_min = 0, double t_max = std::numeric_limits<double>::max());
 	friend std::ostream& operator<<(std::ostream&, const World&);

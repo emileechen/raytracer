@@ -30,6 +30,11 @@ Image::Image(const Image& im) {
 Image::~Image() {
 }
 
+void Image::assignColour(unsigned int x, unsigned int y, Colour c) {
+	this->image[(y * this->width + x) * 4] = c.r * 255;
+	this->image[(y * this->width + x) * 4 + 1] = c.g * 255;
+	this->image[(y * this->width + x) * 4 + 2] = c.b * 255;
+}
 void Image::save(const char* filename) {
 	// Encode the image
 	unsigned error = lodepng::encode(filename, this->image, this->width, this->height);

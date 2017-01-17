@@ -46,6 +46,10 @@ Colour Colour::operator*(Colour& c) {
 	Colour col(this->r * c.r, this->g * c.g, this->b * c.b, this->a * c.a);
 	return col;
 }
+Colour Colour::min(float f) {
+	Colour col(fmin(this->r, f), fmin(this->g, f), fmin(this->b, f), fmin(this->a, f));
+	return col;
+}
 std::ostream& operator<<(std::ostream &os, const Colour& c) { 
     os << "RGBA(" << c.r << ", " << c.g << ", " << c.b << ", " << c.a << ")";
     return os;

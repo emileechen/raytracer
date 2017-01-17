@@ -20,8 +20,8 @@ void Shading::init(Colour a, Colour d, Colour s, double i) {
 	intensity = i;
 }
 Shading::Shading() {
-	// Glossy metallic reflective blue
-	init(Colour(0.1, 0, 0.2), Colour(0.588, 0.392, 0.666), Colour(0.8, 0.8, 0.8), 13.0);
+	// Purple
+	init(Colour(0.1, 0, 0.2), Colour(0.588, 0.392, 0.666), Colour(0.8, 0.8, 0.8), 100.0);
 }
 Shading::Shading(double kar, double kag, double kab, double kdr, double kdg, double kdb, double ksr, double ksg, double ksb, double intensity) {
 	init(Colour(kar, kag, kab), Colour(kdr, kdg, kdb), Colour(ksr, ksg, ksb), intensity);

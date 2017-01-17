@@ -69,6 +69,10 @@ double Sphere::hit(Ray r) {
 	Point S(this->transformation.getInverse() * Vector4(r.direction, 1));
 	// CtoS = S - C
 	Vector CtoS = this->centre.vectorTo(S);
+	std::cout << "r.d: " << r.direction << std::endl;
+	std::cout << "D: " << D << std::endl;
+	std::cout << "S: " << S << std::endl;
+	std::cout << "C: " << this->centre << std::endl;
 	double discriminant = pow(D.dot(CtoS), 2) - (D.dot(D) * (CtoS.dot(CtoS) - pow(this->radius, 2)));
 
 	// std::cout << r << std::endl;

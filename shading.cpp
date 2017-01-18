@@ -21,7 +21,7 @@ void Shading::init(Colour a, Colour d, Colour s, double i) {
 }
 Shading::Shading() {
 	// Purple
-	init(Colour(0.1, 0, 0.2), Colour(0.588, 0.392, 0.666), Colour(0.8, 0.8, 0.8), 100.0);
+	init(Colour(0.1, 0, 0.2), Colour(0.588, 0.392, 0.666), Colour(0.8, 0.8, 0.8), 64.0);
 }
 Shading::Shading(double kar, double kag, double kab, double kdr, double kdg, double kdb, double ksr, double ksg, double ksb, double intensity) {
 	init(Colour(kar, kag, kab), Colour(kdr, kdg, kdb), Colour(ksr, ksg, ksb), intensity);

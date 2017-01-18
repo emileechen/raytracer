@@ -28,6 +28,10 @@ Vector Vector::operator+(Vector& a) {
 	Vector v(this->x + a.x, this->y + a.y, this->z + a.z);
 	return v;
 }
+Point Vector::operator+(Point& p) {
+	Point pt(this->x + p.x, this->y + p.y, this->z + p.z);
+	return pt;
+}
 Vector Vector::operator-(Vector& a) {
 	Vector v(this->x - a.x, this->y - a.y, this->z - a.z);
 	return v;

@@ -18,6 +18,7 @@ public:
 	Vector(const Vector&);
 	~Vector();									// deconstructor
 	Vector operator+(Vector&);
+	Point operator+(Point&);
 	Vector operator-(Vector&);
 	Vector operator*(double);
 	friend Vector operator*(double, Vector);

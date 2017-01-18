@@ -62,7 +62,6 @@ void World::parseFile(const char* filename) {
 double World::hit(Ray r, int& closest_obj, double tMin, double tMax) {
 	double avoid_ref = std::numeric_limits<double>::max();
 	double closest_t = tMax;
-	std::cout << r << std::endl;
 	// Iterate through every Geom in objects...
 	for (std::vector<std::shared_ptr<Geom> >::size_type i = 0; i < objects.size(); i++) {
 		double t = objects[i]->hit(r);

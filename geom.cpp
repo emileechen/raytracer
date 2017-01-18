@@ -66,23 +66,14 @@ double Sphere::hit(Ray r) {
 	// D = Transformation inverse * ray direction
 	Vector D(this->transformation.getInverse() * Vector4(r.direction, 0));
 	// S = ray origin after sphere transformation
-	Point S(this->transformation.getInverse() * Vector4(r.direction, 1));
+	Point S(this->transformation.getInverse() * Vector4(r.origin));
 	// CtoS = S - C
 	Vector CtoS = this->centre.vectorTo(S);
-	std::cout << "r.d: " << r.direction << std::endl;
-	std::cout << "D: " << D << std::endl;
-	std::cout << "S: " << S << std::endl;
-	std::cout << "C: " << this->centre << std::endl;
 	double discriminant = pow(D.dot(CtoS), 2) - (D.dot(D) * (CtoS.dot(CtoS) - pow(this->radius, 2)));
-
-	// std::cout << r << std::endl;
-	// std::cout << *this << std::endl;
-	// std::cout << discriminant << std::endl;
-
 	if (discriminant >= 0) {
 		// Solve the quadratic equation for t1 and t2.
-		double t1 = (-1 * D.dot(CtoS) + sqrt(discriminant)) / (2 * D.dot(D));
-		double t2 = (-1 * D.dot(CtoS) - sqrt(discriminant)) / (2 * D.dot(D));
+		double t1 = ((-1 * D.dot(CtoS)) + sqrt(discriminant)) / (D.dot(D));
+		double t2 = ((-1 * D.dot(CtoS)) - sqrt(discriminant)) / ( D.dot(D));
 		double tMax = fmax(t1, t2);
 		double tMin = fmin(t1, t2);
 		if (tMax >= 0.0) {
